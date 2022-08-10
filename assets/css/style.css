@@ -24,6 +24,13 @@ html {
 			 url('../fonts/Lexend/Lexend-Medium.ttf') format('truetype');
 }
 
+@font-face {
+  font-family: "Lexend-bold";
+  src: url('../fonts/Lexend/Lexend-Bold.ttf');
+  src: url('../fonts/Lexend/Lexend-Bold.ttf') format('truetype'),
+			 url('../fonts/Lexend/Lexend-Bold.ttf') format('truetype');
+}
+
 body {
   margin: 0;
   background-color: #fff;
@@ -721,22 +728,22 @@ ul.team-member-icons li {
 }
 
 h1 {
-  font-family: Lexend, sans-serif;
+  font-family: Lexend-Bold, sans-serif;
   color: #011e6f;
   font-size: 64px;
   font-weight: 700;
-  /* letter-spacing: -0.04em; */
+  letter-spacing: -0.04em;
 }
 
 h2 {
   margin-top: 20px;
   margin-bottom: 10px;
-  font-family: Lexend, sans-serif;
+  font-family: Lexend-Bold, sans-serif;
   color: #011e6f;
   font-size: 48px;
   line-height: 1.2;
   font-weight: 700;
-  letter-spacing: 1px;
+  letter-spacing: -0.04em;
 }
 
 h3 {
@@ -779,7 +786,7 @@ h6 {
 
 p {
   margin-bottom: 10px;
-  font-family: Lexend, sans-serif;
+  font-family: Inter, sans-serif;
   font-size: 18px;
   line-height: 1.65;
 	letter-spacing: 0.5px;
