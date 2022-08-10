@@ -4,16 +4,43 @@ html {
   -webkit-text-size-adjust: 100%;
 }
 
+@font-face {
+  font-family: "Lexend";
+  src: url('../fonts/Lexend/Lexend-Regular.ttf');
+  src: url('../fonts/Lexend/Lexend-Regular.ttf') format('truetype'),
+}
+
+@font-face {
+  font-family: "Lexend-light";
+  src: url('../fonts/Lexend/Lexend-Light.ttf');
+  src: url('../fonts/Lexend/Lexend-Light.ttf') format('truetype'),
+			 url('../fonts/Lexend/Lexend-Light.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: "Lexend-medium";
+  src: url('../fonts/Lexend/Lexend-Medium.ttf');
+  src: url('../fonts/Lexend/Lexend-Medium.ttf') format('truetype'),
+			 url('../fonts/Lexend/Lexend-Medium.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: "Lexend-bold";
+  src: url('../fonts/Lexend/Lexend-Bold.ttf');
+  src: url('../fonts/Lexend/Lexend-Bold.ttf') format('truetype'),
+			 url('../fonts/Lexend/Lexend-Bold.ttf') format('truetype');
+}
+
 body {
   margin: 0;
   background-color: #fff;
   font-family: Inter, sans-serif;
-  color: #b5bbbf;
+  color: #c4ddff;
    font-size: 14px;
   line-height: 20px;
   margin: 0;
   min-height: 100%;
-  font-family: Arial, sans-serif;
+  font-family: "Lexend", sans-serif;
   font-size: 14px;
   line-height: 20px;
   color: #333;
@@ -118,12 +145,12 @@ figcaption {
 }
 */
 #sidebar ul a {
-  color: #161d6f;
+  color: #011e6f;
   text-decoration: none;
 }
 
 #sidebar ul a:hover {
-  color: #98ded9;
+  color: #c4ddff;
 }
 
 #sidebar ul ul {
@@ -579,7 +606,7 @@ label {
 }*/
 
 #spin {
-  background-image: linear-gradient(111deg, #161d6f, #98ded9);
+  background-image: linear-gradient(111deg, #011e67, #c4ddff);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -606,7 +633,7 @@ label {
 }
 
 .fa-github:hover {
-  color: #98ded9;
+  color: #c4ddff;
 }
 
 .diagram {
@@ -670,7 +697,7 @@ label {
 
 .team-member-name {
   margin-bottom: 10px;
-  color: #161d6f;
+  color: #011e6f;
   font-size: 18px;
   font-weight: 500;
   text-align: center;
@@ -693,16 +720,16 @@ ul.team-member-icons li {
 
 .team-member-icon {
   margin: 0px 5px;
-  color: #161d6f;
+  color: #011e6f;
 }
 
 .team-member-icon:hover {
-  color: #98ded9;
+  color: #c4ddff;
 }
 
 h1 {
-  font-family: Inter, sans-serif;
-  color: #161d6f;
+  font-family: Lexend-Bold, sans-serif;
+  color: #011e6f;
   font-size: 64px;
   font-weight: 700;
   letter-spacing: -0.04em;
@@ -711,8 +738,8 @@ h1 {
 h2 {
   margin-top: 20px;
   margin-bottom: 10px;
-  font-family: Inter, sans-serif;
-  color: #161d6f;
+  font-family: Lexend-Bold, sans-serif;
+  color: #011e6f;
   font-size: 48px;
   line-height: 1.2;
   font-weight: 700;
@@ -722,16 +749,17 @@ h2 {
 h3 {
   margin-top: 20px;
   margin-bottom: 10px;
-  color: #161d6f;
+  color: #011e6f;
   font-size: 36px;
   line-height: 1.3;
   font-weight: 700;
+	letter-spacing: 1px;
 }
 
 h4 {
   margin-top: 10px;
   margin-bottom: 10px;
-  color: #161d6f;
+  color: #011e6f;
   font-size: 30px;
   line-height: 1.4;
   font-weight: 700;
@@ -740,7 +768,7 @@ h4 {
 h5 {
   margin-top: 10px;
   margin-bottom: 10px;
-  color: #161d6f;
+  color: #011e6f;
   font-size: 24px;
   line-height: 1.4;
   font-weight: 700;
@@ -749,7 +777,7 @@ h5 {
 h6 {
   margin-top: 10px;
   margin-bottom: 10px;
-  color: #161d6f;
+  color: #011e6f;
   font-size: 15px;
   line-height: 1;
   font-weight: 700;
@@ -761,6 +789,7 @@ p {
   font-family: Inter, sans-serif;
   font-size: 18px;
   line-height: 1.65;
+	letter-spacing: 0.5px;
 }
 
 li {
@@ -778,8 +807,8 @@ blockquote {
 }
 
 a {
-  font-family: Inter, sans-serif;
-  color: #161d6f;
+  font-family: Lexend-medium, sans-serif;
+  color: #011e6f;
   /*  font-size: 20px;*/
   line-height: 1.3;
   /*  font-weight: 500;*/
@@ -787,7 +816,7 @@ a {
 }
 
 a:hover {
-  color: #98ded9;
+  color: #c4ddff;
 }
 
 .section {
@@ -877,7 +906,7 @@ a:hover {
   -ms-flex-align: center;
   align-items: center;
   border-radius: 25px;
-  background-image: linear-gradient(111deg, #161d6f, #98ded9);
+  background-image: linear-gradient(111deg, #011e6f, #c4ddff);
 }
 
 .black-h2 {
@@ -1075,7 +1104,7 @@ a:hover {
 }
 
 .tab-link.w--current {
-  border-color: #00a1db;
+  border-color: #c4ddff;
   background-color: transparent;
 }
 
@@ -1169,7 +1198,7 @@ a:hover {
   -ms-flex-align: center;
   align-items: center;
   border-radius: 100px;
-  background-color: #161d6f;
+  background-color: #011e6f;
   color: #fff;
   font-size: 16px;
   text-decoration: none;
@@ -1188,7 +1217,7 @@ a:hover {
 }
 
 .primary-button:hover {
-  background-image: linear-gradient(111deg, #161d6f, #98ded9);
+  background-image: linear-gradient(111deg, #011e6f, #c4ddff);
 }
 
 .button-container {
@@ -1233,7 +1262,7 @@ a:hover {
 .tertiary-button-text {
   position: relative;
   z-index: 1;
-  color: #3ee6e1 !important;
+  color: #c4ddff !important;
 }
 
 .tertiary-button:hover {
@@ -1334,7 +1363,7 @@ a:hover {
 }
 
 .link-block:hover {
-  color: #98ded9;
+  color: #c4ddff;
 }
 
 .navigation-container {
@@ -1941,7 +1970,7 @@ a:hover {
   }
 }
 
-/* DENDRO ADDITIONS */
+/* DENDRO ADDITIONS
 .bold {
   font-weight: bold;
-}
+} */
