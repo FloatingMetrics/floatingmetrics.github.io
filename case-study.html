@@ -33,7 +33,7 @@
       <div class="navigation-container">
         <div class="navigation-left">
           <a href="index.html" aria-current="page" class="brand w-nav-brand w—current" aria-label="home">
-            <img src="assets/images/seymour_logo.png" alt="" class="template-logo" />
+            <img src="assets/images/seymour.png" alt="" class="template-logo" />
           </a>
           <nav role="navigation" class="nav-menu w-nav-menu">
             <a href="case-study.html" class="link-block w-inline-block">
@@ -46,7 +46,7 @@
         </div>
         <div class="navigation-right">
           <div class="login-buttons">
-            <a href="https://github.com/No-Name-temporary" target="_blank">
+            <a href="https://github.com/seymour-active-monitoring" target="_blank">
               <span style="color: #161d6f">
                 <i class="fab fa-github fa-lg"></i>
               </span>
@@ -68,288 +68,59 @@
 
         <br />
         <br />
-
+				<!-- 
+				<br />
+				<figure>
+					<img src="assets/images/case-study/api-calls.png" class="case-study-image" />
+					<figcaption>Fig. 13: Dendro's CLI commands abstract away the dozens of API calls to AWS required for setting
+						up a pipeline</figcaption>
+				</figure>
+				<br /> -->
         <!-- Section 1 -->
-        <h2 class="h2">1 Introduction</h2>
+        <h2 class="h2">1. Introduction</h2>
         <br>
+        <h3>1.1. What is Seymour?</h3>
         <p>
-          The last decade has seen a paradigm shift in computing infrastructure. Systems are becoming more and more
-          ephemeral, abstracted, and distributed. Innovations in computing infrastructure and software architectures
-          have yielded simpler components at higher levels of abstraction, but behind those simpler pieces lurk more
-          complex systems. Engineers are able to deploy and stitch together many more different kinds of software
-          components today, resulting in vastly increased complexity. As individual nodes in your system’s topology
-          become more decentralized, they also become more complicated to track and monitor.
-        </p>
-
-        <h3>1.1 What is Seymour?</h3>
-        <p>
-          Dendro is an open-source, serverless monitoring framework for small, distributed apps. Our team built Dendro
-          in order to help small teams handle the challenges of operating a distributed system.
-        </p>
-        <br />
-        <p>
-          Dendro enables you to collect, centralize, and store log and metric data emitted by the various disparate
-          pieces of your system. With Dendro, when something goes down in production, there’s no race to SSH into a
-          dozen different nodes to figure out what’s gone wrong; all of the log data you’d use for debugging has already
-          been collected, processed and tagged with the servers and services that originated the individual records, and
-          stored in a single database for querying.
-        </p>
-        <br />
-        <p>
-          All of this empowers the user to both greatly reduce costly downtime or outages, and proactively improve the
-          overall performance of their systems. Prevention is important: you want to catch problems before your users
-          do. If you’re constantly applying ad-hoc, band-aid fixes, you’re making your system more fragile instead of
-          less.
-        </p>
-        <br />
-        <p>
-          To illustrate just exactly what Dendro does, let’s use the example of a small company named NapTime.
+					Seymour is an open-source and easy-to-configure active monitoring solution that allows users to simulate requests from globally distributed locations to test their API endpoints. Seymour measures the performance, response time, and correctness of the payload data. We built Seymour to help engineering teams bolster existing testing approaches and handle the challenges of monitoring their increasingly complex systems. Our solution enables rapid detection of issues in production before users experience them. Seymour's infrastructure is easily deployed with a single CLI command and a quick setup.
         </p>
         <br />
 
-        <h3>1.2 What problem does Seymour Solve</h3>
+        <h3>1.2. What problem does Seymour Solve</h3>
         <p>
-          NapTime has two engineers, and they recently completed the beta build of their sleep monitoring app.
-        </p>
-        <br />
-        <p>
-          Their system itself has proven to be resilient so far, thanks to its small size and simplicity.
-        </p>
-        <figure>
-          <img src="assets/images/case-study/naptime-early.png" class="case-study-image" />
-          <figcaption>Fig. 1: NapTime's beta architecture</figcaption>
-        </figure>
+					Before we dive further into Seymour and active monitoring, let us take a step back and talk in general about how development teams minimize the risk of bugs reaching production.
+				</p>
         <br />
         <p>
-          NapTime built a simple three-tier system in order to avoid premature optimization, with their web server and
-          application running on one server, and their database on another.
-        </p>
+					Many of the techniques for accomplishing this fall under the category of testing, which is the process of confirming that software does what it is supposed to do. Good testing helps prevent bugs and can sometimes even help improve performance. Although there is no universally agreed-upon classification, software tests are generally categorized based on purpose and scope. Examples include:  
+				</p>
         <br />
+				<ul>
+					<li>Unit tests: This type of test focuses on a small part of a software system. The "unit" may be one or many classes or functions. These tests are often run by an individual developer even after making small changes to a codebase </li>
+				  <li>Integration tests: This type of test is concerned with the entire application with all its parts connected together. These tests can find bugs in the interaction between components in a way that unit tests are not designed to. Remote systems, however, are often mocked.</li>
+				  <li>Threshold tests: This type of test compares the actual value of a metric, for example, the performance of a given operation, against a threshold. If the actual value of the metric exceeds the threshold, then the test fails. An inefficient query, for instance, could lead to an operation taking longer than specified by the developer-defined threshold and lead to a test failure.</li>
+				</ul>
+				<br />
         <p>
-          The two engineers have been busy developing features and shipping their first few builds. When an outage or
-          critical bug pops up, it derails their development flow. NapTime doesn’t currently have a monitoring solution
-          in place, so they’re totally reliant on either hearing from users when something breaks, or coming across an
-          issue themselves by poking around the system.
+					In spite of developers' best efforts, issues still do arise in production. How can this happen, you might wonder? Well: conditions change. Integration tests are often performed only on deployment, meaning tests are run only at the moment in time. Next, only "nearly" perfect replication of the production system occurs in pre-production tests. This is especially true of modern, distributed systems.  Finally, third-party service dependencies can prove to be unreliable.
         </p>
         <br />
-
-        <h3>1.3 An Outage at NapTime</h3>
+				<p>
+					On Martin Fowler’s website a contributor wrote this pertinent quote:
+				</p>
+				<blockquote>
+					<i>"In the age of small independent services and frequent deployments, it's very difficult to test pre-production with the exact same combination of versions as they will later exist in production." </i>
+				</blockquote>
+				martinfolwer.com
         <p>
-          What happens when an outage is reported? Say, for example, a couple of users reach out to say that they’re
-          trying to access their homepages but they’re just receiving a 500-level error.
-        </p>
-        <br />
-        <figure>
-          <img src="assets/images/case-study/debugging-small.gif" class="case-study-image" />
-          <figcaption>Fig. 2: How can NapTime determine what's wrong?</figcaption>
-        </figure>
-        <br />
-        <p>
-          The engineers decide on three priority debugging steps: ensure that each server in their system is up, ensure
-          that each of the services running on those servers is up, and check whether those services are sending and
-          receiving requests and responses successfully.
-        </p>
-        <br />
-        <figure>
-          <img src="assets/images/case-study/debugging-steps.gif" class="case-study-image" />
-          <figcaption>Fig. 3: Some potential debugging steps for NapTime's engineers</figcaption>
-        </figure>
-        <br />
-        <p>
-          First, if they have a list of their static IP addresses, they can use the Unix command line utility `ping` to
-          check whether each of the servers is up at all. If the servers are up, it’ll be useful to see their health
-          metrics. NapTime engineers might run a utility like `top` on each of the servers to see a summary of the
-          system’s health (e.g. overall CPU load or available memory) as well as what processes are running on the
-          server.
-        </p>
-        <br />
-        <p>
-          If everything checks out with the system’s health, it’s time to start looking into the individual services
-          running on each server. If the engineers are interested in a running process, like an application, they might
-          check the status of their process manager. Each service generally has a different method of checking its
-          health.
-        </p>
-        <br />
-        <p>
-          After the most obvious checks (e.g. is something even running?) come the next steps. What if none of their
-          checks turn up an issue? Performing each of the aforementioned steps manually will tell them how something is
-          performing at the moment of observation, but what about performance just before they checked? Or how about at
-          the time the complaints started coming in? The log files that each of NapTime’s servers and services produce
-          can provide the answers to these questions.
-        </p>
-        <br />
-        <figure>
-          <img src="assets/images/case-study/logs-historical.png" class="case-study-image" />
-          <figcaption>Fig. 4: NapTime's servers and services write their historical records to log files</figcaption>
-        </figure>
-        <br />
-        <p>
-          Let’s say that the NapTime team is curious about what’s going on with their Nginx web server. One of their
-          next steps would be to take a look at the access log file in the nginx subdirectory of var/log.
-        </p>
-        <br />
-        <p>
-          Web servers like nginx and Apache produce access logs, where each line contains information about each request
-          sent to the system; like the IP address of the requester, time of the request, the path of the requested file,
-          the server response code, the time it took the server to fulfill the request, and more. If there are 500-level
-          errors occurring, exploring the access log of their web server is where NapTime would find evidence of them.
-        </p>
-        <br />
-        <figure>
-          <img src="assets/images/case-study/log-breakdown.png" class="case-study-image" />
-          <figcaption>Fig. 5: An example of a single record from a web server's plain-text access log</figcaption>
-        </figure>
-        <br />
-        <p>
-          The individual log lines NapTime would find would look something like the above diagram. An interested
-          engineer can take logs like these and analyze them, either one by one or aggregated, in order to achieve a
-          number of insights, like:
-          <!-- TODO: Bullet points -->
-          · Finding individual specific events in the past
-          · Graphing trends over time, like 500 response codes or aggregated requests per minute
-          · And alerting specific users when pre-defined heuristic thresholds are met or surpassed
-        </p>
-        <br />
-
-        <h3>1.4 Scaling up NapTime</h3>
-        <p>
-          Let’s consider NapTime’s architecture and processes after they scale a bit more. They still have a three-tier
-          architecture, with presentation, business logic, and storage abstracted away from each other, but now they
-          have more overall servers and services.
-        </p>
-        <br />
-        <p>
-          Collecting and processing logs is straightforward when everything is on a single machine, you just use some
-          software to handle aggregation. But when you have a distributed system with multiple nodes, instead of just
-          software you need both software AND some infrastructure that can handle both transportation to and storage in
-          a new central location.
-        </p>
-        <br />
-        <figure>
-          <img src="assets/images/case-study/naptime-scaled.png" class="case-study-image" />
-          <figcaption>Fig. 6: NapTime's architecture after scaling</figcaption>
-        </figure>
-        <br />
-        <p>
-          Suddenly NapTime is in charge of 8 nodes instead of 2, scaled out app servers, more unique services, a load
-          balancer, and multiple databases. What is debugging like for them now? What if MongoDB suddenly stops
-          responding, or one of the app servers can no longer write to the Main Postgres instance? How will NapTime
-          isolate what went wrong, let alone actually fix it? Their number of servers and services keeps growing, and
-          the number of connections between all of them continues to grow exponentially. How is the team supposed to get
-          a holistic understanding of what’s happening across the entire topology of their system?
-        </p>
-        <br />
-        <p>
-          Monitoring is toil. That is, if you don’t have an automated framework taking care of it for you. As detailed
-          above, one key component in “monitoring” is examining the log output of your systems. That can mean reading
-          through files thousands of lines long, like NapTime’s Nginx Access Log, one line at a time. No one wants to
-          read log files line by line if it can be avoided. After all, one of the main motivations of the field of
-          software engineering is automating the toil out of processes.
-        </p>
-        <br />
-        <figure>
-          <img src="assets/images/case-study/tail.gif" class="case-study-image" />
-          <figcaption>Fig. 7: Running `tail -f` on a server/service's logfile can help you understand what that
-            server/service is doing over time</figcaption>
-        </figure>
-        <br />
-        <p>
-          On Unix-like systems, a common strategy to gain a quick insight into what’s happening with a service is to run
-          the command `tail -f` on the log file to which that service writes. Tail prints the last 10 lines of a given
-          file to STDOUT, and the `-f` flag indicates that the program should continue to “follow”, streaming new lines
-          to STDOUT as they are written to the file.
-        </p>
-        <br />
-        <p>
-          This process worked fine for NapTime when they wanted to watch the real time stream of log messages on one
-          machine or two. But what about now that their system is distributed across nearly a dozen servers? Are their
-          engineers going to open a dozen terminal windows and SSH onto each individual server?
-        </p>
-        <br />
-        <p>
-          Monitoring distributed applications is exponentially harder. The Naptime engineers simply wouldn’t be able to
-          watch and comprehend the stream of logs coming in for every service on each server in real time. They would
-          want to be able to capture those logs as they’re written or emitted and save them for later. Ideally on a
-          central server of some kind, so they don’t have to go SSHing around to find what they need in the stress of an
-          outage.
-        </p>
-        <br />
-
-        <h3>1.5 Observability</h3>
-        <p>
-          The visibility that a team like NapTime seeks into their system is summed up by the concept of observability.
-        </p>
-        <br />
-        <!-- TODO: Ø Cindy blockquote formatting here -->
-        <p>
-          Due to the nature of software, no complex system is ever healthy.
-        </p>
-        <br />
-        <p>
-          Distributed systems in particular are pathologically unpredictable. When multiple services in a distributed
-          system are communicating with each other over the wire, each hosted on a potentially ephemeral node, the
-          possible failure conditions are nearly endless. What if a server is down? What if a service is down? What if
-          both services are up but are failing to communicate for some reason? Et cetera.
-        </p>
-        <br />
-        <p>
-          In light of these challenges, a team must also keep in mind to design their systems to facilitate debugging..
-          Things will break and outages will occur. Hope is not a strategy; but preparedness is.
-        </p>
-        <br />
-
-        <h3>1.6 Need for a monitoring strategy</h3>
-        <p>
-          Things can get messy very quickly. Without a centralized platform for handling the collection, transportation,
-          and storage of your data, those valuable records can get lost or never collected in the first place.
-          Developing a strategy for the collection, centralization, and retention of your log and metric data means that
-          you don’t prematurely forfeit the benefits that logs and metrics provide.
-        </p>
-        <br />
-        <p>
-          Dendro acts as that strategy.
-        </p>
-        <br />
-        <figure>
-          <img src="assets/images/case-study/single-source.gif" class="case-study-image" />
-          <figcaption>Fig. 8: Dendro provides a single source of historical truth for application state</figcaption>
-        </figure>
-        <br />
-        <p>
-          A team can SSH into each of the nodes in their system, configure and deploy a logging pipeline using Dendro’s
-          cli tool, , and start shipping all of their log and metric data off of their servers and onto a central store.
-          The logs and metrics produced can come either from services running on the server, like nginx or Postgres, or
-          from the server itself, in the form of host metrics like CPU load or available memory.
-        </p>
-        <br />
-        <p>
-          Dendro provides a single, centralized log management solution, untangling the web of data producers and
-          consumers. No more routing logs from individual sources to multiple destinations over time. No more custom
-          aggregation scripts, cron jobs, or any of that. Dendro collects the logs and metrics emitted from distributed
-          servers and services over time, building a single source of historical state.
-        </p>
-        <br />
-        <p>
-          That single source of truth about system and service state and performance empowers the user to:
-          <!-- TODO: Bullet points -->
-          · Ensure that all output or generated data is reliably and automatically captured, without having to do it
-          manually
-          · Avoid context switching, or jumping between databases and machines trying to dig up whatever went wrong
-          · And reduce debugging time, because everything exists in a single database and can be queried and explored
-          like normal relational data.
-        </p>
-        <br />
-        <p>
-          Each of these benefits brings the user closer to the holy grail for engineers: automating away manual toil.
-        </p>
-        <br />
+					So, what happens when issues do arise in production? The end-user’s experience may be degraded or even completely broken. For example, response time can be higher than expected, the response data can be incorrect and, maybe worst of all, an API can be unavailable altogether. Rather than waiting for customers to experience and surface such issues, it would be convenient to test API endpoints in production, continuously. This is exactly where Active monitoring comes into play.
+				</p>
 
         <!-- Section 2 -->
-        <h2 class="h2">2 Active Monitoring</h2>
+        <h2 class="h2">2. Active Monitoring</h2>
         <h3>2.1 What is Active Monitoring</h3>
         <p>
-          To explore exactly how Dendro empowers small teams working on distributed applications, let’s think back to
-          the example of NapTime after they’ve scaled their architecture.
+					Active monitoring, also known as synthetic monitoring, is a technique that runs automated tests against a live production system on a regular basis in order to detect failing business requirements. It helps to continuously monitor server and application performance, even during periods of low user engagement. Tests are written with API consumer expectations in mind to ensure the API provider continues to meet its commitments. 
+					There are three broad categories of active monitoring tests: Availability or “uptime”, performance, which is a measure of latency, and Correctness of data. Below is an example test, which is comprised of two assertions:		
         </p>
         <br />
         <figure>
@@ -358,22 +129,18 @@
         </figure>
         <br />
         <p>
-          Dendro includes a collection agent that the team installs on each node in their system. That collection agent
-          gathers log and metric data from both the services running on the server, as well as information about the
-          server itself.
+					Here, a GET request to our example endpoint should return a response within 500 milliseconds. The actual response was completed in 632 milliseconds so the assertion would be considered a failure. The second assertion expects the request to return a response status of 200. In this case, the actual status was 200, meaning the assertion is considered passing. But, because our first assertion failed the overall test is still considered failing.
         </p>
         <br />
         <p>
-          But how does the data make the jump from those machines to the central database? That would require an
-          infrastructure pipeline, in addition to the deployment of some type of collection software.
-        </p>
+					In the event a given test fails, on-call engineers can be notified through various channels such as Slack or email to begin troubleshooting the underlying problem.
+				</p>
         <br />
 
         <h3>2.2 Why is active monitoring important?</h3>
         <p>
-          This is an overview of Dendro’s architecture and the infrastructure behind this framework. We’ll dive into it
-          in more detail later, but for now let’s stick to the main conceptual pieces.
-        </p>
+					Things are bound to go wrong in a software production environment. Rather than view this as a bad thing, however, engineering teams can see it as an opportunity to use active monitoring to identify problems in production before users do.
+				</p>
         <br />
         <figure>
           <img src="assets/images/case-study/dendro-architecture.gif" class="case-study-image" />
@@ -381,814 +148,317 @@
         </figure>
         <br />
         <p>
-          We’ve already discussed how Dendro helps you set up the automated collection of logs and metrics from your
-          services. You don’t need to change a single line of your application code-- Dendro runs as a fully-decoupled
-          agent process on your nodes, tapping into the log files to which your services already write and scraping
-          metrics from the server. But collecting your logs and metrics is only the tip of the iceberg.
+					Active monitoring is especially important in the context of a microservices architecture. Take for example an API endpoint that is dependent on many different services, both internal and external, each of which may be deployed multiple times per day. Including replication of all these services in local CI tests would be slow or brittle at best. Including some services may not be feasible at all.  </p>
+        <br />
+        <p>
+					So, even with a well-maintained test environment, functional and data errors can still slip through the cracks and make their way into production. For the users of a company exposing public APIs, the source of truth is what their experience is when they hit one of these endpoints.
+				</p>
+        <br />
+        <p>
+					Furthermore, the best active monitoring solutions provide the ability to originate tests from locations all around the world. This provides insights into how your system is performing for users in specific geographic locations and helps to better diagnose if an issue is network-related. 
         </p>
         <br />
         <p>
-          The collection agent streams data at the time of generation to your own pipeline that Dendro creates. Getting
-          the data off of the machine as quickly as possible is important for both your ability to monitor in real-time,
-          as well as ensuring that data isn’t lost if an ephemeral virtual machine gets spun down outside of your
-          control.
-        </p>
-        <br />
-        <p>
-          The pipeline also features a processing step where the collectors deployed by Dendro take the raw data coming
-          off of your servers and rework it into predictable, structured output, before storing it in a time-series
-          database optimized for writing, processing, and querying time-series data. Dendro builds a single source of
-          truth for you with each table representing a different capture source, while preserving the identity of the
-          host machine or process for each row of data.
-        </p>
-        <br />
-        <p>
-          All of your monitoring data existing in the same place (your Timestream database) allows you to keep context
-          switching at an absolute minimum while debugging, while also maintaining high-resolution in your data so you
-          can visualize and explore granular changes in the performance and state of your servers and services over
-          time.
-        </p>
-        <br />
-
-        <h3>2.3 Why did we build Dendro?</h3>
-        <p>
-          The goal we had in mind when we set out to build Dendro was to help teams start collecting, centralizing,
-          storing, and getting value out of their logs and metrics today, so they have them when they need them.
+					By introducing active monitoring to a holistic testing strategy, engineering tams can sleep better at night knowing that bugs in production will surface fast and be fixed before users are impacted.
         </p>
         <br />
 
         <!-- Section 3 -->
-        <h2 class="h2">3 Solutions</h2>
+        <h2 class="h2">3. Solutions</h2>
+				<h3>3.1 Existing Solutions</h3>
         <p>
-          When it comes to picking a monitoring solution, companies generally consider three options: buy, operate, or
-          build.
+					There are quite a few products offering active monitoring solutions. Some prominent vendors that offer this service are New Relic and Datadog, followed by some smaller-scale companies like Uptrends, Checky and Runscope. There are also a handful of open-source solutions. One is called Monika and another is offered by Artillery, which is more commonly known for load testing. Besides using a SaaS or open-source active monitoring product, some teams may decide on a DIY approach and build their own in-house solution. Let’s weigh the pros and cons of each of these options by considering their various capabilities and feature sets.
         </p>
-        <br />
-        <figure>
-          <img src="assets/images/case-study/buy-operate-build.gif" class="case-study-image" />
-          <figcaption>Fig. 11: Teams generally choose between buying, personally operating, or building their own
-            monitoring solution</figcaption>
-        </figure>
-        <br />
+				<br />
+				<figure>
+					<img src="assets/images/case-study/comparison-table.png" class="case-study-image" />
+					<figcaption>Fig. 13: Comparing Seymour to other solutions on the market
+						up a pipeline</figcaption>
+				</figure>
+				<br /> 
         <p>
-          If a small company like NapTime was to <span class="bold">buy</span> a solution, they might look at working
-          with a SaaS vendor like Datadog. Outsourcing your monitoring to a vendor makes the whole process very easy and
-          painless, but that ease comes with a pretty steep price. Not every small company has enough runway to justify
-          spending money on yet another SaaS service.
+					In general, SaaS active monitoring products offer geographic distribution of request locations. Typically, these solutions are managed, meaning there’s very little to zero setup required from the customer to configure their first test. Additionally, most of the interactions with these SaaS products, including New Relic and Checkly, are through a UI, which makes setting up new tests easy for all users, including non-engineers. One drawback of a managed solution, however, is the lack of data ownership. This might be a deal breaker for some companies who don’t want their test data residing on a third-party provider’s infrastructure. SaaS solutions typically offer a wide variety of features, including native alerting over a variety of channels. Some additional features include teardown scripts and integration into CI/CD pipelines. All of this functionality, some of which might not be needed for a given use case, does come at a direct financial cost. SaaS solutions are the most expensive option.
         </p>
+				<br />
         <br />
         <p>
-          The next option then is to <span class="bold">operate</span>. Open source platforms like Elastic were
-          developed to make this relatively simple. However, if you want to use the open source Elastic Stack, you’re
-          still responsible for hosting all of it, and managing an Elasticsearch server requires knowledge of Java and
-          prolonged attention. What if NapTime’s engineers don’t have that expertise or time?
-        </p>
+					On the other hand, choosing an open-source solution allows the users to maintain complete control over their data, and these solutions are usually free. However, these solutions don’t typically offer geographic distribution of tests, at least in their free tiers. Additionally, these solutions are more laborious to set up and use as compared to SaaS solutions. Both Monika and Artillery, for instance, are set up via a multi-step process and tests are configured via YAML. There is no UI.
+				</p>
         <br />
         <p>
-          The third option, <span class="bold">build</span>, simply isn’t feasible for a small company. If you’re a tech
-          giant like Facebook or Twitter, with a huge budget and plenty of infrastructure, you can roll your own
-          observability platform. For a small company, their time is much better spent on their own core-business
-          product that keeps the lights on.
+					On the other side of the spectrum, we have in-house solutions. This could either entail building a system from the ground up or wrapping an existing open source solution like Monika. A major appeal of this approach is that by definition the user can customize the solution to fit their specific needs, which can of course include maintaining complete control over their data. A significant drawback of this approach, however, is the amount of time and effort required to develop such a solution and would require engineering resources that could be otherwise spent on more mission-critical tasks.
         </p>
+        <br />
+				<h3>3.2 Introducing Seymour</h3>
         <br />
         <p>
-          But what if there were another option? That’s where we think Dendro fits in.
-        </p>
-        <br />
-        <figure>
-          <img src="assets/images/case-study/dendro-comparison.png" class="case-study-image" />
-          <figcaption>Fig. 12: How our team chose to position Dendro in the marketplace of monitoring solutions
-          </figcaption>
-        </figure>
+					Having surveyed available active monitoring solutions, what we found was lacking was an open-source, self-hosted, easy-to-configure monitoring solution that allows running tests from globally distributed locations.   </p>
         <br />
         <p>
-          Dendro combines the <span class="bold">ease of deployment</span> and <span class="bold">low maintenance</span>
-          of a SaaS solution thanks to its collection agents and fully-serverless pipeline.
+					That’s why we built Seymour.   geographic distribution, allowing users to configure tests originating in 22 global locations. Seymour is easy to use. Although not as simple to set up as a managed SaaS product, as we’ll discuss later, provisioning Seymour requires only two CLI commands. Once it is set up, all test and alert configurations are done through a UI, although Seymour also exposes an API enabling programmatic configuration if that’s what the user prefers. Because Seymour is open-source and self-hosted, it allows users to maintain sole ownership of their data. Seymour enables users to configure alerts to be sent over one or more of three channels including e-mail, Slack, and Discord. And finally, since the only cost of Seymour is the cost of the AWS infrastructure it runs on, it’s inexpensive, especially relative to its SaaS counterparts.
         </p>
         <br />
+				<h3>3.3 UI/ UX Demo</h3>
+				<iframe width="560" height="315" src="https://www.youtube.com/embed/167arvL_SbY" title="YouTube video player" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+				<h3>3.4 Deployment</h3>
         <p>
-          Dendro mirrors the <span class="bold">ownership of data</span> promised by Open Source or DIY solutions. Log
-          data can be extremely sensitive, and you don’t necessarily want someone else having access to your records in
-          their god view/admin platform.
+					Getting started with Seymour is straightforward. An AWS account is required, but once that’s set up all that’s left is to:
         </p>
         <br />
-        <p>
-          However, Dendro isn’t nearly as <span class="bold">feature rich</span> as any of the other solutions. We built
-          Dendro with a specific, niche use-case in mind and can’t come close to offering the richness of a Datadog,
-          Elastic Stack, or highly custom DIY platform.
-        </p>
-        <br />
-        <p>
-          One of Dendro’s main differentiators is that <span class="bold">Dendro treats time-series data as a
-            first-class citizen</span>. The time-series database in Dendro’s pipeline is optimized for inserting and
-          indexing time-based data, and comes with a whole slew of time-series query and aggregation functionality that
-          Elasticsearch does not support.
-        </p>
-        <br />
-        <p>
-          But, what we traded for the ease and speed of setup and time-series optimization is cost. We designed the
-          pipeline using AWS components, and while their pricing can be opaque and tricky to calculate at times Dendro
-          certainly costs more to keep running than the Elastic Stack or a DIY platform because you’re not operating the
-          platform on your own infrastructure.
-        </p>
-        <br />
-
-
+				<ol>
+					<li>
+						Clone the Seymour infra-setup repo which can be found at https://github.com/No-Name-temporary/infra-setup
+					</li>
+					<li>
+						Run two CLI commands and wait while approximately 50 (note: don’t emphasize) AWS resources are spun up in your account
+					</li>
+					<li>
+						Enter the generated URL in your browser
+					</li>
+				</ol>
+				</br>
+				<p>
+					With that done, you’re ready to configure your first test! One thing worth noting, however, is that the provisioning of AWS resources, while automated, may take upwards of 20 minutes, primarily due to the provisioning of resources in 22 remote regions.
+				</p>
         <!-- Section 4 -->
-        <h2 class="h2">4 Seymour's architecture</h2>
+        <h2 class="h2">4. Seymour's architecture</h2>
+				<h3>4.1. Overview</h3>
 
         <p>
-          Our primary goal while designing Dendro was to help teams start collecting, centralizing, storing, and getting
-          value out of their logs and metrics as soon as possible. That way, teams have their monitoring data already
-          saved and explorable when they need it the most: in the stress of an outage. Our team took that goal and broke
-          it up into three components:
+					Seymour’s infrastructure can be thought of as loosely organized into four main sections which together make up the lifecycle loop of a single test. First, we have the Test Configuration phase where tests are defined and saved. Then there is a Pre-Processing phase which preps each test run with a test configuration and proper routing to the geographic regions where it’s needed to run. Next, is the Test Execution phase, where the actual HTTP request is made to the endpoint and the response is checked against the assertions in the test configuration. The results are packaged up and sent to the final phase, Post Processing. This is where test results are stored and alerting is triggered in the event of a failed test.
+        </p>
+        <br />
+				<p>
+					Before moving on let’s define Home and Remote regions. When a user deploys Seymour, the user must select a main AWS region in which to set up the infrastructure. That’s what we are referring to here as the Home Region. Everything needed to power the UI, the Backend Server, as well as the Test Configuration, Pre-Processing, and Post-Processing phases reside in the Home Region. The test execution happens in any number of the AWS regions selected when configuring a test, so the infrastructure for that phase is set up in all other available AWS regions, which we refer to here as Remote Regions. 
+				</p>
+				<br />
+				<p>
+					Next, let’s take a turn in each phase to walk through the details of a single test’s journey through the loop.
+				</p>
+				<br />
+        <h3>4.2. Test Configuration</h3>
+        <p>
+					The journey of a test through the infrastructure begins as a JSON configuration file sent from the UI when a user first schedules a test. The backend app first stores the test configuration in the database. Afterward, it adds the test ID to the JSON config and uses the AWS SDK to create a new rule in the EventBridge service. 
+        </p>
+        <br />
+        <p>
+					EventBridge is a serverless event bus and is typically a cornerstone in AWS-based event-driven architectures. While EventBridge is a multi-faceted service, we are essentially using its scheduling capabilities as a CRON job. An EventBridge rule, for our purposes, is a scheduled event action that fires on a fixed recurring interval with a specific target. The interval is specified when scheduling the test, and the rule is created to fire on that same interval. The JSON test configuration is saved to the rule as the fixed payload for the event action every time it fires off to the target. The CRUD app isn't needed at all during the ongoing life of a test once it has been scheduled.
+        </p>
+        <br />
+        <h3>4.3. Pre-processing</h3>
+        <p>
+					The Pre-Processing phase is where each scheduled test run fires, and our JSON test config kicks off through the loop. We walked through what EventBridge is doing before, so we know that the rule fires on a schedule, but I left off the target for where the rule fires to. 
+					The target destination is a Lambda function we refer to as Route Packager, which is the same target for every scheduled rule.					
+        </p>
+        <br />
+				<p>
+					Route Packager's purpose is to read all the location data from the JSON test configuration payload and prep it for routing to the correct regions. It then publishes a message with the test to a topic in SNS, Amazon's Simple Notification Service. A queue in each region is subscribed to the topic and will only accept messages if they are intended for that region. 
+				</p>
+				<br />
 
-          <!-- TODO: Bulletpoints -->
-          <span class="bold">The need for a “low-toil framework”</span>
-          <span class="bold">Treating time-series data as a first class citizen</span>
-          <span class="bold">Decreasing Mean Time to Resolve (MTTR)</span>
-        </p>
-        <br />
-
-        <h3>4.1 Low-toil</h3>
+        <h3>4.4. Test execution</h3>
         <p>
-          A low-toil framework is one that is easy to set up and maintain, helping your core development flow without
-          adding to your busy workload. There are 3 factors the team decided were crucial to determining whether a
-          framework could be called “low-toil”:
-        </p>
+					Up to this point all the infrastructure we have looked at has been within the home region, this, the Test Execution phase, is a look at what is going on in each remote region. As mentioned previously, there is a queue that first receives the message in each remote region. The message is pulled from the queue by a Lambda function we refer to as Test Runner. Now the JSON test config has made its journey to the point where it’s actually needed for making the HTTP request. Test Runner uses the config data to make a request on the endpoint and then compare the response to the expected response values in the assertions. If any of the assertions fail, then the whole test is marked as failed. It then packages up the results and sends them back to the Home Region. </p>
         <br />
-
-        <h5>Ease of Integration</h5>
+				<h3>4.5. Post-processing</h3>
         <p>
-          To start aggregating logs and scraping metrics, users generally need to deploy a collection tool onto their
-          servers. Ideally, such a tool should be able to collect, transform and route all monitoring data. Moreover, it
-          should be able to configure monitoring for multiple services without requiring users to write custom
-          integration code.
+					In the home region, the test results are received in a queue. They are processed from the queue by a Lambda function we refer to as the Test Result Handler. The result handler first examines the results for whether the test succeeded or failed. If it finds that the test failed, it immediately invokes another Lambda, which handles alerting. Regardless of whether the test succeeded or failed, Result Handler then proceeds to write the results to the database. Before wrapping up here, let's circle back to the Lambda, which handles alerts. When invoked, it receives in its payload information about the test which failed. It then queries the database to get that test's alerting information and sends an alert message to each configured destination.
         </p>
         <br />
-        <h5>A ready-made pipeline</h5>
-        <p>
-          A low-toil framework should provision and deploy a pre-designed/opinionated logging pipeline for users,
-          freeing them from the need to research and construct their own -- enabling them to focus on their core
-          functionality.
-        </p>
-        <br />
-        <figure>
-          <img src="assets/images/case-study/api-calls.png" class="case-study-image" />
-          <figcaption>Fig. 13: Dendro's CLI commands abstract away the dozens of API calls to AWS required for setting
-            up a pipeline</figcaption>
-        </figure>
-        <br />
-        <h5>Low maintenance</h5>
-        <p>
-          Provisioning and maintaining servers takes time and can be difficult. And even under close observation, they
-          can still crash at seemingly random times. The ideal low-toil framework would feature a pipeline that is
-          completely serverless to avoid extra stress and overhead for development teams.
-        </p>
-        <br />
-        <p>
-          Every service in Dendro’s pipeline is fully serverless and managed for you by AWS. Users don’t need to worry
-          about Dendro crashing or becoming bogged down during peak loads.
-        </p>
-        <br />
-
-        <h3>4.2 Time-series native</h3>
-        <p>
-          Time series data is a collection of observations obtained through repeated measurements over time. Think of a
-          graph that has time as the x-axis-- that’s time-series data. At the level of a single record, time-series data
-          is indistinguishable from normal relational data that features a timestamp as a field.
-        </p>
-        <br />
-        <figure>
-          <img src="assets/images/case-study/timestream-schema.png" class="case-study-image" />
-          <figcaption>Fig. 14: An example schema for Timestream, AWS's time-series database</figcaption>
-        </figure>
-        <br />
-        <p>
-          With that in mind, log data is perfectly suited to being treated as time-series data. For example, time series
-          data could measure the average response time of a web server over the course of a week. The distinction
-          between normal relational data and time-series data is more meaningful when one thinks about aggregating and
-          querying data at the database level.
-        </p>
-        <br />
-        <!-- TODO: Kreps block quote: “A log is an append-only, totally-ordered sequence of records ordered by time.” -->
-        <p>
-          Elasticsearch & other such stores/services are optimized for text-based indexing and querying, but are not
-          optimized for time, and so typical queries you’d want to perform with time-based data are either slow or not
-          possible to perform.
-        </p>
-        <br />
-        <p>
-          Mapping logs from plain-text log lines to time-series records in a database unlocks a large range of
-          time-specific querying functionality that helps Dendro improve your ability to extract insights from your logs
-          over time.
-        </p>
-        <br />
-        <p>
-          If we look at a web server such as Apache or nginx, we can think of a few important metrics that use time as a
-          measurement.
-          <!-- TODO: Numbers -->
-          1. Request time duration - “What happened yesterday that caused our average request time to double?”
-          2. Request status codes - “What happened at 4pm that started causing 500 status codes?”
-          3. Requests per second - “When are our slowest hours so the team can schedule maintenance?”
-        </p>
-        <br />
-
-        <h3>4.3 Decrease Mean Time to Resolve (MTTR)</h3>
-        <p>
-          Getting insights into distributed systems is cumbersome.
-        </p>
-        <br />
-        <p>
-          For example, think back to NapTime’s scaled architecture. Their system includes 8 different nodes and 16
-          different network connections that could fail. If some error occurs, where did it happen? What node failed?
-          What logs do they check? Without log aggregation and centralization, NapTime would have to check each node
-          individually.
-        </p>
-        <br />
-        <figure>
-          <img src="assets/images/case-study/connections.png" class="case-study-image" />
-          <figcaption>Fig. 15: How can engineers debug systems with exponentially growing numbers of nodes/connections?
-          </figcaption>
-        </figure>
-        <br />
-        <p>
-          Dendro aims to decrease the time between an outage occurring and the time it takes for you to resolve it. We
-          don’t want your outages to be a murder mystery. And we don’t want you or your team being reactive.
-        </p>
-        <br />
-        <p>
-          Instead, we want you to be proactive. Dendro not only helps you catch issues early, but also informs you in
-          real-time precisely what’s broken, helping you pinpoint exactly what went wrong and on which node. Dendro does
-          so by monitoring incoming logs and metrics to notify users of failures, thereby decreasing the time it takes
-          for your team to become aware of a problem.
-        </p>
-        <br />
-        <figure>
-          <img src="assets/images/case-study/proactive.png" class="case-study-image" />
-          <figcaption>Fig. 16: Dendro helps you be proactive, rather than reactive, in debugging your system
-          </figcaption>
-        </figure>
-        <br />
-        <p>
-          With Dendro, NapTime’s engineer’s no longer need to check 8 different nodes. By aggregating logs into a single
-          database and providing a dashboard to query and view health metrics, Dendro helps solve outages efficiently
-          without your engineers having to play detective.
-        </p>
-        <br />
-
 
         <!-- Section 5 -->
-        <h2 class="h2">5 Engineering decisions and challenges</h2>
+        <h2 class="h2">5. Engineering decisions and challenges</h2>
+				<h3>5.1. Build from bottom-up or wrap open-source?</h3>
+				<h4>Monika</h4>
+        <p>
+					During our project research phase, after the team settled on our problem domain we were quickly faced with a critical decision: should we wrap an open source project to achieve our goals or should we build something from the bottom up? Let’s first take a closer look at Monika, one of the open-source projects discussed in the overview of existing solutions.
+				</p>
         <br />
-        <figure>
-          <img src="assets/images/case-study/architecture.png" class="case-study-image" />
-          <figcaption>Fig. 17: Dendro's architecture</figcaption>
-        </figure>
+				<p>
+					Monika bills itself as a synthetic monitoring application. Just like Seymour, Monika is designed to send out HTTP requests and assess the responses. This project was especially compelling to the team because it provided a lot of the functionality that we wanted to provide to Seymour users. Out of the box, Monika can: 
+				</p>
+				<ul>
+					<li>run complex API tests on scheduled intervals</li>
+					<li>handle alerting through integrations with a number of popular platforms</li>
+					<li>and being open-source, users are able to maintain ownership of their data</li>   
+				</ul>
+				<br />
+				<p>
+					We used Monika quite a bit in our research and while it works well, it was still lacking critical features that were important to the team. 
+				</p>
+				<br />
+				<p>
+					First and foremost, Monika lacked the ability to originate tests from a variety of geographic locations. It’s limited to sending HTTP requests from the server instance the app is running on.
+				</p>
+				<br />
+				<p>
+					We also homed in on the difficulty of using Monika which is a command-line tool and does not come with a user interface. As Scott alluded to earlier, the team’s goal was for Seymour to be easy enough to use by engineers and non-engineers alike. With Monika, test settings and configurations are defined through yaml files which first require a read through Monika’s docs to learn its specific syntax. Test result data is available in the form of raw logs and an SQLite database. It’s also able to integrate with Prometheus, an observability data aggregation tool. However, by default, Monika only exposes four metrics including total tests, status code info, response time, and a tally of triggered alerts. On the whole, we found the level of user effort required to be more intensive than what we had in mind, especially for a non-technical user. 
+				</p>
+				<br />
+				<p>
+					With a solid understanding of what Monika could and could not do, we then took a hard look at wrapping and extending Monika to achieve all of our requirements. If Monika already provided half of Seymour, we could focus more time on features and polish, or so we thought.
+				</p>
+				<br />
+				<h4>Wrap?</h4>
+				<p>
+					After the assessment, we felt we could add a user interface and expanded metrics with relative ease. A much bigger challenge came into focus, however, when we looked at multi-region testing. 
+				</p>
+				<br />
+				<p>
+					Because Monika requires a constantly running process, in order to give our users the option to generate multi-region tests, we would’ve had to deploy the app to dedicated virtual machines in each of the 22 AWS regions we planned to support. This approach presented a number of thorny questions:
+				</p>
+				<ol>
+					<li>
+						First, each virtual machine would require security, networking, and application configuration upon deployment. How would we make that easy for the user?
+					</li>
+					<li>
+						To generate tests, a Monika instance must read from a local yaml configuration file. How would we make sure that the config files were all in sync across the virtual machines?
+					</li>
+					<li>
+						Lastly, 22 virtual machines would be inherently difficult to maintain. How would we ensure the reliability of what was supposed to be an easy-to-use monitoring tool?
+					</li>
+				</ol>
+				<br />
+				<p>
+					After considering potential solutions to these problems, we came to the conclusion that deploying Monika to multiple regions would require sub-optimal infrastructure decisions. We believed we could develop our own solution that avoided these challenges and resulted in an improved final architecture.
+				</p>
+				<br />
+				<h4>Build</h4>
+				<p>
+					As Miles demonstrated in his overview of Seymour’s architecture, we ended up utilizing lambda functions to achieve our requirement of multi-region testing. Instead of deploying an entire virtual machine running Monika to remote regions, Seymour simply deploys the test-runner lambda function, coupled with a queue. Although we had to write more custom code, we found this setup to be superior in the following ways:
+				</p>
+				<br />
+				<ol>
+					<li>
+						First, the test-runner lambda function is easily deployed to all AWS regions with AWS’s Cloud Development Kit or CDK.  This eliminates the need to configure any virtual machines.
+					</li>
+					<li>
+						The test-runner lambda function is stateless. All of the scheduling and configuration logic remains in the home region and is communicated to the test-runner via SNS, the message broadcasting tool Miles mentioned in the architecture overview
+					</li>
+					<li>
+						And by placing a queue in front of the test-runner lambda, we get a high degree of assurance that the test-runner will process incoming SNS messages
+					</li>
+					<li>
+						Communication of test runner's results back to the home region is simple thanks to lambda’s ability to send invocation records to a queue destination in another region
+					</li>
+					<li>
+						Rather than a constantly running virtual machine, the test-runner is invoked on demand. This reduces maintenance needs, and also reduces costs
+					</li>
+					<li>
+						Lambda functions scale on-demand, out of the box. If a user configures dozens of tests to run in the same region at the exact same time, the test-runner can handle the load.
+					</li>
+				</ol>
+				<br />
+				<p>
+				  In the end, by building Seymour from the ground up, we were able to fully take advantage of AWS cloud-native products, resulting in easy deployment and a low-maintenance user experience.
+			  </p>
+
+        <h3>5.2. Why are we using Route Packager</h3>
+        <p>
+					Our journey to building the route-packager lambda function also comprised an interesting set of design decisions. If you recall from the walk-through of Seymour’s architecture, the route-packager is the target for all scheduler “rules”. Also recall that “rules”, in the context of Seymour, are simply scheduled events with an attached JSON test configuration.
+        </p>
         <br />
         <p>
-          We’ve seen how Dendro’s architecture is split up into four major conceptual sections. In this next section
-          we’re going to more closely examine these pieces as well as the individual components that comprise them.
+					We knew from the outset that we wanted to enable broad-based global testing capability with an efficient use of resources. Deploying the test-runner to all remote regions achieved part of this plan, but how to communicate scheduled test configurations to the test-runner was not immediately apparent. 
         </p>
+        <br />
+        <p>
+					One option we looked at was directly invoking remote region test-runner lambdas from the scheduler rules. While EventBridge is technically capable of this, there is a 5 target limit for any given rule. Because we wanted to support 22 targets, one for each region, we quickly discarded this approach. 
+				</p>
+        <br />
+        <p>
+					We also tried using EventBridge’s “event bus” functionality, which is essentially another interface for communicating events in AWS, to connect home and remote regions. This approach denied us the ability to easily pass through test configuration JSON data, however, and was also discarded. 
+        </p>
+        <br />
+				<p>
+					Ultimately, we landed on using SNS as the medium through which scheduler events were distributed because of its ability to widely broadcast a message containing the test configuration across regions.
+				</p>
+        <br />
+        <p>
+					In order to make this message distribution more targeted, we added message filtering logic to the SNS topic subscriptions for each region so that only messages intended for a given region were added to the queue for processing by the test-runner. 		
+				</p>
+        <br />
+        <p>
+					We still needed one last piece of functionality to make this work, however. In order for the subscription filters to work, we needed to add some region metadata to the message, functionality that EventBridge does not provide. </p>
+        <br />
+				<p>
+					This is why we decided to build the route-packager lambda function. In Seymour’s final architecture, each fired rule first travels to the route-packager which translates the location data from the test configuration into attributes that it adds to the message before publishing to the SNS topic.
+				</p>
+        <p>
+					So, by combining route-packager and SNS in the pre-processing phase of Seymour’s test loop,  we were able to achieve our goal of efficient distribution of tests to the remote regions.
+				</p>
         <br />
 
-        <h3>5.1 Collection</h3>
+        <h3>5.3. The outcome: system resiliency</h3>
+        <p>
+					Resiliency was at the top of mind at each phase of building Seymour because after all, what good would an active monitoring tool be if it was brittle or prone to crashing? 
+        </p>
         <br />
-        <figure>
-          <img src="assets/images/case-study/collection.png" class="case-study-image" />
-          <figcaption>Fig. 18: Dendro's collection step</figcaption>
-        </figure>
+				<p>
+					There are three pillars in Seymour’s overall approach to system resiliency:
+				</p>
         <br />
         <p>
-          For each service in a user’s distributed app that they want to monitor, they need to set up collection. Dendro
-          uses a collection agent called <a href="https://vector.dev/" target="_blank">Vector</a> to gather, transform,
-          and send a user’s distributed logs to the pipeline.
+					First, we reached for AWS’s serverless offerings, including lambda functions, throughout the test loop. As discussed in the wrap vs. build section, using serverless allows Seymour to shift a good portion of operational responsibility and infrastructure management to AWS. 
+				</p>
+        <br />
+        <p>
+					Furthermore, by using AWS’s managed messaging services, we were able to decouple individual components within the test loop as well as the test loop from the rest of the system. This design provides assurances that test runs will be processed eventually even in cases of extremely high volume or if one of the loop components fails. As Miles mentioned earlier, once a test is configured, it is able to run and generate alerts even if the UI, backend app, and database go down.  </p>
+        <br />
+        <p>
+					Lastly, we chose to deploy the backend app using AWS’s Elastic Beanstalk service, which reduces the risk of failures through automatic capacity provisioning, load balancing and auto-scaling. Because the underlying infrastructure is fully managed by AWS, Elastic Beanstalk also provides automatic failover for terminated or unavailable instances.  </p>
+        <br />
+        <h3>5.4. CDK: Cross-Region Automated Deployment</h3>
+        <p>
+					One of the foremost challenges we faced in building Seymour was automating the deployment of AWS resources across multiple regions. Because ease-of-deployment was one of our main goals for the project, we wanted to limit as much as possible the amount of infrastructure configuration required of the user.
         </p>
         <br />
         <p>
-          Raw logs are text based, unqueryable and generally hard to work with. Vector makes it possible to take this
-          raw, plaintext nginx access log and convert it to JSON prior to sending the log off to the pipeline for
-          further processing.
-        </p>
-        <br />
-        <figure>
-          <img src="assets/images/case-study/highlighted-log.png" class="case-study-image" />
-          <figcaption>Fig. 19: Extracting information from raw logs is difficult</figcaption>
-        </figure>
+					To automate the process of configuring and deploying AWS resources, we used two main tools: The Cloud Development Kit, or CDK and the Software Development Kit, or SDK.
+				</p>
         <br />
         <p>
-          Looking at this log, we can see several important pieces of information. The path that was requested, the
-          amount of time it took to complete the request, as well as the time the event occurred. Dendro needs to
-          somehow identify and capture this information from this dynamic log.
+					CDK is an AWS service used to programmatically set up, modify and tear down resources. The CDK was relatively straightforward to work with for deploying and connecting infrastructure within the home region. However, this same approach did not work when it came to connecting resources between the home and remote regions.
         </p>
+        <br />
+				<p>
+					One way of implementing a multi-region deployment is using a CDK pipeline. However, we continued to look for a different way because of the additional burden of complexity caused by adding the pipeline. There would be a one-time technical burden on us to implement the pipeline, but it also added several more pieces of complexity for the eventual user just to get Seymour deployed on their own account. Technically this would work and it remained a fallback option for us.
+				</p>
         <br />
         <p>
-          To properly function on each node it’s deployed on, Vector requires a lengthy configuration file. It includes
-          all of the log and metric sources you want to gather from and the sinks you’re sending to. It requires writing
-          esoteric regexes to transform those logs from plaintext to a structured format, and configuring your AWS
-          credentials to ship to the pipeline. Dendro adds a “type” field to each collected record, identifying the
-          service that produced the log. This type property is crucial for a sorting step that occurs later on in the
-          pipeline and which we’ll discuss below.
-        </p>
+					Ultimately we were able to avoid having to use the CDK pipeline. We did this by using a different AWS tool, the SDK. While the CDK is specifically purposed for setting up, modifying, or tearing down resources, the SDK enables cross-region communication at runtime. We added some code to the Test Runner lambda function so that when invoked it can use the SDK to connect to the Home Region. This kept the deployment process lean and the complexity to a minimum for the installing user. </p>
         <br />
-        <br />
-        <figure>
-          <img src="assets/images/case-study/vector-config.png" class="case-study-image" />
-          <figcaption>Fig. 20: A basic config file for vector is dozens of lines long</figcaption>
-        </figure>
-        <br />
-        <p>
-          Writing out all of this information is extremely laborious. A fully fleshed out configuration file is over 400
-          lines long, and this caused our team plenty of headaches when we were first manually typing it out.
-        </p>
-        <br />
-        <p>
-          In order to streamline this, the team built a `dendro configure` CLI command that launches a configuration
-          wizard, providing a prompt to select which services our users want to monitor. With these services selected,
-          Dendro is able to dynamically generate the long config file Vector requires without manual effort.
-        </p>
-        <br />
-        <br />
-        <figure>
-          <img src="assets/images/case-study/dendro-config.gif" class="case-study-image" />
-          <figcaption>Fig. 21: Dendro's configure command</figcaption>
-        </figure>
-        <br />
-        <p>
-          Once Vector is properly configured, it gathers logs and metrics, transforms them from plaintext to JSON, and
-          then sends them off to the cloud pipeline. Once in the pipeline, the first stop is AWS Kinesis Data Firehose.
-        </p>
-        <br />
-
-        <h3>5.2 Transform</h3>
-        <br />
-        <figure>
-          <img src="assets/images/case-study/transform.png" class="case-study-image" />
-          <figcaption>Fig. 22: Tranformation section of Dendro's cloud infrastructure</figcaption>
-        </figure>
-        <br />
-        <p>
-          Kinesis Data Firehose is a fully-managed, real-time streaming platform that captures, transforms & delivers
-          data. It ingests new data up to a predefined threshold (Dendro defaults to use one minute/1MB) in order to
-          optimize network efficiency, and because it’s completely serverless, it adds no additional infrastructure for
-          the users of Dendro to manage.
-        </p>
-        <br />
-        <br />
-        <figure>
-          <img src="assets/images/case-study/connections-bad.png" class="case-study-image" />
-          <figcaption>Fig. 22: An impossible to manage web of connections between services</figcaption>
-        </figure>
-        <br />
-        <p>
-          In today’s distributed world, data produced by one service is often consumed by multiple other services.
-          Connecting all of these is difficult, time-consuming and hyper-specific. Dendro uses Kinesis to help decouple
-          services from one another. Instead of connecting every service together in a hyper-specific manner, each
-          service can publish to or consume from the Data Firehose.
-        </p>
-        <br />
-        <br />
-        <figure>
-          <img src="assets/images/case-study/connections-good.png" class="case-study-image" />
-          <figcaption>Fig. 23: Services decoupled from one another</figcaption>
-        </figure>
-        <br />
-        <p>
-          Once the data buffering threshold is met, data is pointed to the static HTTP Endpoint of an S3 bucket. Data is
-          temporarily staged in the bucket for two main reasons: to assist with retries of failed deliveries and persist
-          any records that errored out before being stored in Timestream (which will prompt an alert from Dendro’s
-          monitoring setup, as we’ll discuss later), as well as to trigger a Lambda function on being written.
-        </p>
-        <br />
-        <p>
-          Lambda is a serverless compute service that allows users to execute code without provisioning servers. Lambdas
-          can be invoked in response to certain triggers making them event-driven, and they can scale proportionally to
-          the incoming workload by concurrently invoking more instances of a function when needed. This ability to
-          continuously scale is perfect for Dendro because log data tends to be very bursty.
-        </p>
-        <br />
-        <br />
-        <figure>
-          <img src="assets/images/case-study/lambda-go.png" class="case-study-image" />
-          <figcaption>Fig. 24: Dendro's Lambda function sorting and inserting records into Timestream</figcaption>
-        </figure>
-        <br />
-        <p>
-          The Lambda function serves to transform, sort, and load data into Timestream, our selected time-series
-          database. The team initially wrote the Lambda function in JavaScript, but later rewrote it in Golang because
-          the Lambda function is pivotal to the throughput of data ingestion and using a compiled language offered
-          faster speeds and lower overhead. This rewrite to Go netted us a two-fold increase in throughput when
-          processing 1,000 records.
-        </p>
-        <br />
-        <p>
-          Once invoked, Dendro’s Lambda function retrieves the newly written records from the bucket, sorts, and stores
-          them into separate tables in Timestream based on the type property, which is added earlier using Vector.
-        </p>
-        <br />
-
-        <h3>5.3 Store</h3>
-        <p>
-          This takes us to Timestream, a time-series optimized database service. With the user’s data extracted,
-          transformed, and finally loaded into Timestream, they are able to analyze and query this data across arbitrary
-          periods of time. Dendro has taken their raw logs and metrics and converted them into a form that's easily
-          analyzable and processable.
-        </p>
-        <br />
-        <p>
-          This is possible because Timestream provides a SQL-like language to query this data. This query language is
-          extremely powerful because not only is it already familiar to most developers, but also it adds some very
-          powerful functions that work with time-series datasets.
-        </p>
-        <br />
-        <br />
-        <figure>
-          <img src="assets/images/case-study/timeseries-query.png" class="case-study-image" />
-          <figcaption>Fig. 25: Time-series analysis with SQL</figcaption>
-        </figure>
-        <br />
-        <p>
-          The power of a time-series database can be summed up by the idea that changes in data over time are tracked as
-          INSERTS, rather than as UPDATES. There’s no rewriting of existing data when you’re thinking in terms of
-          time-series, there are just multiple observations over time. This unlocks rich potential for graphing,
-          visualizing, and understanding trends in your data over time-- precisely what the team set out to do when we
-          designed Dendro.
-        </p>
-        <br />
-
-        <h3>5.4 Monitor</h3>
-        <br />
-        <figure>
-          <img src="assets/images/case-study/monitor.png" class="case-study-image" />
-          <figcaption>Fig. 26: Monitoring section of Dendro's cloud infrastructure</figcaption>
-        </figure>
-        <br />
-        <p>
-          With the aforementioned infrastructure in place, the team was able to build a monitoring and alerting system
-          to harness the incoming logs. This enables some useful functionality, like the ability to email our users as
-          soon as critical errors in their distributed system occur (like a web server suddenly only returning 500
-          response codes). This core functionality is made possible by CloudWatch.
-        </p>
-        <br />
-        <p>
-          CloudWatch provides a centralized view of all the logs coming from the user’s cloud infrastructure. Dendro
-          users are able to set up metric filters on incoming logs and set heuristic thresholds that, when activated,
-          will set off an alarm. Triggered alarms publish an event to their corresponding Simple Notification Service
-          topic, which will in turn email any users that have subscribed to that topic during setup. This allows us to
-          watch for any errors as they occur and immediately notify our users.
-        </p>
-        <br />
-        <p>
-          Finally, we arrive at Dendro’s custom-built data exploration and dashboarding server.
-        </p>
-        <br />
-        <br />
-        <figure>
-          <img src="assets/images/case-study/dashboard-charts.png" class="case-study-image" />
-          <figcaption>Fig. 27: Dendro's chart page</figcaption>
-        </figure>
-        <br />
-        <p>
-          We built a dashboarding hub to help users visualize and query their data in near real-time as it's being
-          produced. This dashboard is available for view on any machine in the user’s distributed system that has Dendro
-          installed. The team has pre-populated the dashboard with charts that allow users of Dendro to isolate
-          anomalies and see historical trends. These charts are generated and populated in real time, providing an
-          up-to-the-minute view of system state in a single location.
-        </p>
-        <br />
-        <br />
-        <figure>
-          <img src="assets/images/case-study/dashboard-query.png" class="case-study-image" />
-          <figcaption>Fig. 28: Dendro's query page</figcaption>
-        </figure>
-        <br />
-        <p>
-          Because accessing AWS functionality through their actual website GUI can take time and effort, we also built
-          in the ability to query Timestream directly from the dashboarding hub, exploring any returned rows for
-          convenience and exporting the data as JSON with the click of a button.
-        </p>
-        <br />
-        <p>
-          Now that we’ve individually examined each component of Dendro, we’re better equipped to understand Dendro as a
-          whole and how to use it.
-        </p>
-        <br />
-
 
         <!-- Section 6 -->
-        <h2 class="h2">6 Future work</h2>
-        <h3>6.1 Installing Dendro</h3>
-        <br />
-        <figure>
-          <img src="assets/images/case-study/5-steps-to-install.png" class="case-study-image large-image" />
-          <figcaption>Fig. 29: Five Steps to Installing Dendro</figcaption>
-        </figure>
-        <br />
-        <p>
-          Dendro is an npm package, which means the first step is to download and install it just like any other npm
-          package. Make sure to use the <code class="command">-g</code> flag so that the command is available throughout
-          your local environment.
-        </p>
-        <br />
-        <p>
-          The second step is to install the data collecting agent, Vector, on the local machine. Dendro provides a
-          command which helps the user to install Vector given their particular package manager.
-        </p>
-        <br />
-        <p>
-          The third step is to configure Dendro for that server using the <code class="command">dendro configure</code>
-          command. This step results in
-          two configuration files: 1. a file that Vector uses to monitor the selected services on that machine, 2. A
-          file that Dendro uses to deploy the pipeline, including AWS credentials and database tables that match the
-          selected services for that server.
-        </p>
-        <br />
-        <figure>
-          <img src="assets/images/case-study/dendro-configure.gif" class="case-study-image demo" />
-          <figcaption>Fig. 30: Dendro Configure</figcaption>
-        </figure>
-        <br />
-        <p>
-          Dendro now knows which services the user wants to monitor on their machine. The fourth step is to actually
-          build the
-          pipeline by running the command <code class="command">dendro deploy</code>. Again, the pipeline provides a
-          centralized location where all
-          of the monitoring data from the user's various servers will live.
-        </p>
-        <br />
-        <br />
-        <figure>
-          <img src="assets/images/case-study/dendro-deploy.gif" class="case-study-image demo" />
-          <figcaption>Fig. 31: Dendro Deploy</figcaption>
-        </figure>
-        <br />
-        <p>
-          Running the dendro deploy command sets up the AWS infrastructure, including the IAM role, the Kinesis Firehose
-          stream, the S3 bucket, the Lambda function, and the Timestream database with the correct tables.
-        </p>
-        <br />
-        <p>
-          It asks if the user’s AWS credentials have the appropriate permissions, providing a link where they can
-          confirm that they do, then it asks if they want to set up alerting, which will send them an email under
-          specific failure conditions.
-        </p>
-        <br />
-        <br />
-        <figure>
-          <img src="assets/images/case-study/dendro-teardown.gif" class="case-study-image demo" />
-          <figcaption>Fig. 32: Dendro Teardown</figcaption>
-        </figure>
-        <br />
-        <p>
-          The user can run the teardown command to remove all deployed AWS services. It will ask them to confirm that
-          the user
-          wants to delete the resources. The teardown command is for ease of use and to ensure that there are no extra
-          AWS services floating around in the user’s account.
-        </p>
-        <br />
-        <br />
-        <figure>
-          <img src="assets/images/case-study/vector-run.gif" class="case-study-image demo" />
-          <figcaption>Fig. 33: Running Vector</figcaption>
-        </figure>
-        <br />
-        <p>
-          Now that the pipeline is set up, the user is ready to send data to it. They do this by running vector.
-        </p>
-        <br />
-        <p>
-          <!-- TODO: stylize code -->
-          The user starts Vector by running the command <code class="command">vector --config vector-config.toml</code>,
-          passing in the
-          configuration file generated from the configure command. This file ensures that they are monitoring the
-          appropriate services on this machine. Vector is now streaming logs and metrics to the AWS pipeline.
-        </p>
-        <br />
-
-        <h3>6.2 Using Dendro</h3>
-
-        <br />
-        <p>
-          Now that the user has data passing through to the database, they can visit the frontend, which is accessed by
-          running
-          the command dendro start:server from any computer that has dendro installed and configured, and then visiting
-          localhost port 3000 on a browser.
-        </p>
-        <br />
-        <figure>
-          <img src="assets/images/case-study/frontend-home.gif" class="case-study-image demo" />
-          <figcaption>Fig. 34: Frontend Home</figcaption>
-        </figure>
-        <br />
-        <p>
-          There are three pages listed on the sidebar. A homepage, a charts page, and a query page. On the homepage, the
-          user can see what services are being monitored and check that the pipeline is successfully writing records to
-          the database.
-        </p>
-        <br />
-        <br />
-        <figure>
-          <img src="assets/images/case-study/frontend-charts.gif" class="case-study-image demo" />
-          <figcaption>Fig. 35: Frontend Charts</figcaption>
-        </figure>
-        <br />
-        <p>
-          On the charts page, the user sees real-time data for the services currently being monitored. This includes key
-          metrics from the <a href="https://grafana.com/blog/2018/08/02/the-red-method-how-to-instrument-your-services/"
-            target="_blank">RED method</a>, such as the rate of requests, the number of errors among those requests, and
-          the duration of the requests.
-        </p>
-        <br />
-        <br />
-        <figure>
-          <img src="assets/images/case-study/frontend-query.gif" class="case-study-image demo" />
-          <figcaption>Fig. 36: Frontend Query</figcaption>
-        </figure>
-        <br />
-        <p>
-          The query page enables the user to query the Timestream database. In this example, they query the nginx access
-          logs
-          for all 500 errors that occurred in the last 2 hours. A user can also export the data and begin to drill down
-          to find the source of the problem.
-        </p>
-        <br />
-
-
-        <!-- Section 7 -->
-        <h2 class="h2">7 Glossary</h2>
-        <p>
-          We had to overcome 3 major technical challenges while building Dendro.
-
-          <!-- TODO: Bullet points -->
-          AWS: the optimistic Response object
-          Real-time data transformations
-          What does Dendro visualize?
-        </p>
-        <br />
-
-        <h3>7.1 AWS: the optimistic Response object</h3>
-        <p>
-          One major challenge the team faced while building the <code>deploy</code> and <code>teardown</code> commands
-          was related to spinning up or destroying AWS services that depend on the existence of another service in order
-          to successfully deploy or that cannot be destroyed while another service depends on it. <code>deploy</code>
-          fires off 37 API calls, while <code>teardown</code> executes 25.
-        </p>
-        <br />
-        <figure>
-          <img src="assets/images/case-study/api-calls.png" class="case-study-image" />
-          <figcaption>Fig. 37: The services spun up/destroyed by Dendro's <code>deploy</code> and <code>teardown</code>
-            commands</figcaption>
-        </figure>
-        <br />
-        <p>
-          For example, certain services couldn’t be spun up before the requisite IAM permissions were created or
-          attached, or Timestream tables couldn’t be created until the database was successfully created.
-        </p>
-        <br />
-        <p>
-          When an HTTP request is dependent on a successful response to a previous one, you expect to be able to make
-          the first request, wait to receive the response, and only then send the second request.
-        </p>
-        <br />
-        <figure>
-          <img src="assets/images/case-study/optimistic-response.png" class="case-study-image" />
-          <figcaption>Fig. 38: Expected behavior when a second async request is dependent on a successful response to a
-            first</figcaption>
-        </figure>
-        <br />
-        <p>
-          When using the AWS SDK, AWS returns an AWS Response object that doesn’t necessarily indicate that the service
-          has been created! So when you predicate the next step on the receipt of the Response object and send the
-          subsequent request, it often fails.
-        </p>
-        <br />
-        <figure>
-          <img src="assets/images/case-study/long-polling.gif" class="case-study-image" />
-          <figcaption>Fig. 39: Our solution to premature responses: implementing long-polling (with exponential backoff)
-          </figcaption>
-        </figure>
-        <br />
-        <p>
-          To overcome this, we implemented long polling AWS with exponential back off. Dendro asks Amazon repeatedly
-          whether the operation has been completed, increasing the time between failed polls at an exponential rate in
-          order to avoid overwhelming the server or hitting a rate limit. Once the AWS Response object returns a state
-          that is not <span class="bold">LOADING</span>, Dendro can then react to that state change accordingly.
-        </p>
-        <br />
-
-        <h3>7.2 Transforming data in real-time</h3>
-        <p>
-          How does Dendro take raw, plain-text logs and prepare them for insertion to a time-series database? To achieve
-          this, the team had to build in two separate data transformation steps throughout the pipeline. The first
-          happens at the point of collection, while the second happens in the Lambda function triggered by Kinesis Data
-          Firehose writing to the S3 bucket. We have already discussed how both work but to reiterate:
-        </p>
-        <br />
-        <figure>
-          <img src="assets/images/case-study/apache-log.png" class="case-study-image" />
-          <figcaption>Fig. 40: Sample plaintext log line from a web server</figcaption>
-        </figure>
-        <br />
-        <p>
-          Logs are typically emitted as plain-text. During the log collection process, Dendro takes some steps to
-          prepare it for insertion into the database. It first has to parse the record using a regex pattern written
-          specifically to match this particular log format. Parsing that plain-text log with such a regex pattern gives
-          us a structured JSON object. Dendro then injects a `type` key into the JSON object to note the record source
-          and transport it off the host server.
-        </p>
-        <br />
-        <p>
-          The second data transformation happens in the Lambda function where Dendro takes an octet-stream, parses it,
-          and then writes to the database.
-        </p>
-        <br />
-        <p>
-          Part of the appeal of the Kinesis Data Firehose is that it can accept data from any source: JSON, XML and
-          numerous other formats. Firehose just accepts that data without checking or enforcing its validity.
-          Unfortunately, the easiest way to accept any data is to convert it to binary and keep appending it to a binary
-          blob. This is exactly what Firehose does and where it converts the JSON Dendro built while collecting records
-          into an octet-stream.
-        </p>
-        <br />
-        <p>
-          We first start by converting the binary data into a string. This looks similar to an array of JSON records but
-          is missing a few tokens (brackets, commas, etc.) making it unparsable/invalid JSON.
-        </p>
-        <br />
-        <figure>
-          <img src="assets/images/case-study/binary-to-json.gif" class="case-study-image" />
-          <figcaption>Fig. 41: Using regex to parse a string back to JSON</figcaption>
-        </figure>
-        <br />
-        <p>
-          We can use regex to insert those missing tokens and then successfully parse the octet-stream back into JSON.
-          Once the record is parsable, Dendro checks that the <code>type</code> key that was injected during the first
-          data transformation phase. This key helps us identify the source of the record, what data to pluck out and
-          store and what table within Timestream to insert it in.
-        </p>
-        <br />
-
-        <h3>7.3 What to Visualize</h3>
-        <p>
-          When Naptime’s servers are down and they view the Dendro dashboard, what are the key metrics they need to see
-          in order to resolve their outage? The challenge here wasn’t in writing SQL queries, but actually taking a step
-          back and deciding how to represent what Dendro tracks and measures visually.
-        </p>
-        <br />
-        <p>
-          There are some main schools of thought on what metrics matter most for monitoring, named things like “The Four
-          Golden Signals”, “USE”, and the “RED Method”. Tom Wilkie, a former site reliability engineer (SRE) at Google,
-          created the microservice-oriented monitoring philosophy called RED. It focuses on rate, errors & duration, and
-          the team found that it had the right balance of simplicity and specificity for our use-case, as well as that
-          it was particularly well suited to time-series data.
-
-          <!-- TODO: bullet points -->
-          <span class="bold">“Rate”</span> refers to the number of requests per second a service is receiving.
-          <span class="bold">“Errors”</span> is the number of the requests that receive an error response from the
-          service.
-          <span class="bold">“Duration”</span> is the length of time the service takes to complete a response to a
-          request.
-        </p>
-        <br />
-        <p>
-          We found that RED matched our use case nicely, perhaps due to the fact that microservice architectures are
-          typically distributed systems.
-        </p>
-        <br />
-        <p>
-          Tom Wilkie has written that “understanding the error rate, the request rate, and then some distribution of
-          latency gives you a nice, consistent view of how your architecture is behaving.” That’s exactly what we wanted
-          Dendro to provide: a consistent view of how your architecture is behaving over time.
-        </p>
-        <br />
-
-
-        <!-- Section 8 -->
-        <h2 class="h2">8 References</h2>
-        <p>
-          Of course, an open source project is never fully finished. While we think Dendro is currently
-          feature-complete, ready for people to use and immediately benefit from, there are certain future work items
-          that would strengthen the overall framework.
-        </p>
-        <br />
+        <h2 class="h2">6. Future work</h2>
+				<p>
+					We believe Seymour provides a great active monitoring solution, but we're also excited about expanding its functionality. Here are some of the features we'd like to implement in future iterations:
+				</p>
         <ul>
           <li>
-            We would like to provide our users the ability to inject more and more varied custom transforms into the
-            pipeline. It’s possible as of now if they go and edit the configuration files, but that’s manual and Dendro
-            is all about reducing toil.
+						<h6>'Smart' alerting</h6>
+						At the moment, Seymour provides three ways of alerting: Slack and Discord via webhooks or email via SES (Amazon's Simple Email Service). One of the limitations is that the alerting system triggers notifications for every failed test. This means that a test failure in twelve different locations consequently triggers twelve separate alerts, and there is no test retry functionality. In the future, we would like to implement a feature allowing users to determine how many fails they wish to be notified on, along with alerts aggregation.
           </li>
           <li>
-            We’d also like to provide built-in support for MySQL, which Vector does not currently support as a native
-            source but which they do plan to build as part of a future milestone.
-          </li>
+						<h6>Teardown scripts</h6>
+						Currently, Seymour does not have the functionality to add custom scripts, but it's something we have considered for our future work. Tear-down scripts execute after the HTTP request is made and have access to response objects. They could be used, for example, to send additional requests to clear the test data in the database after sending a POST request test.
+					</li>
           <li>
-            And finally, on the dashboard, we would like to provide syntax highlighting for SQL queries as well as more
-            out of the box graphs and visualizations.
+						<h6>Allowing integration with a CI/CD pipeline</h6>
+						Lastly, Seymour allows to either configure tests to run on a schedule as frequent as every one minute or to invoke the test on demand with 'run now' functionality. It doesn't, however, have the functionality to be invoked automatically by a third-party actor and so lacks integration ability with a CI/CD pipeline.
           </li>
         </ul>
 
+
+        <!-- Section 7 -->
+        <h2 class="h2">7. Glossary</h2>
+
+        <!-- Section 8 -->
+        <h2 class="h2">8. References</h2>
+
+
         <!-- Section 9 -->
-        <h2>9 Team</h2>
+        <h2>9. Team</h2>
         <br>
         <br>
         <div class="section team-section">
@@ -1203,120 +473,148 @@
                 <div>
                   <div class="team-grid">
                     <div class="team-member-wrap">
-                      <img src="assets/images/team/andrew.jpg" loading="lazy" alt="" />
+                      <img src="assets/images/team/scott_circle.png" loading="lazy" alt="" />
                       <div class="team-member-info">
-                        <div class="team-member-name">Andi Crotwell</div>
-                        <div class="team-member-location">Anaheim, CA</div>
+                        <div class="team-member-name">Scott Graham</div>
+                        <div class="team-member-location">San Francisco, CA</div>
                       </div>
                       <ul class="team-member-icons">
                         <li>
-                          <a href="mailto:awcrotwell@gmail.com" target="_blank">
+                          <a href="mailto:scttgrhm7@gmail.com" target="_blank">
                             <span class="team-member-icon">
                               <i class="fas fa-envelope"></i>
                             </span>
                           </a>
                         </li>
                         <li>
-                          <a href="https://awcrotwell.com" target="_blank">
+                          <a href="https://scttgrhm.dev/" target="_blank">
                             <span class="team-member-icon">
                               <i class="fas fa-globe"></i>
                             </span>
                           </a>
                         </li>
                         <li>
-                          <a href="https://linkedin.com/in/awcrotwell" target="_blank">
+                          <a href="https://www.linkedin.com/in/scott-graham-96a57944/" target="_blank">
                             <span class="team-member-icon">
                               <i class="fab fa-linkedin"></i>
+                            </span>
+                          </a>
+                        </li>
+												<li>
+                          <a href="https://github.com/scogra17" target="_blank">
+                            <span class="team-member-icon">
+                              <i class="fab fa-github"></i>
                             </span>
                           </a>
                         </li>
                       </ul>
                     </div>
                     <div class="team-member-wrap">
-                      <img src="assets/images/team/pete.png" loading="lazy" alt="">
+                      <img src="assets/images/team/tim_circle.png" loading="lazy" alt="">
                       <div class="team-member-info">
-                        <div class="team-member-name">Peter D'Elia</div>
-                        <div class="team-member-location">Charlottesville, VA</div>
+                        <div class="team-member-name">Tim Dronkers</div>
+                        <div class="team-member-location">Denver, CO</div>
                       </div>
                       <ul class="team-member-icons">
                         <li>
-                          <a href="mailto:petertdelia@gmail.com" target="_blank">
+                          <a href="mailto:tim@dronkers.dev" target="_blank">
                             <span class="team-member-icon">
                               <i class="fas fa-envelope"></i>
                             </span>
                           </a>
                         </li>
                         <li>
-                          <a href="https://peterdelia.com" target="_blank">
+                          <a href="https://www.dronkers.dev/" target="_blank">
                             <span class="team-member-icon">
                               <i class="fas fa-globe"></i>
                             </span>
                           </a>
                         </li>
                         <li>
-                          <a href="https://linkedin.com/in/peter-delia" target="_blank">
+                          <a href="https://www.linkedin.com/in/timdronkers/" target="_blank">
                             <span class="team-member-icon">
                               <i class="fab fa-linkedin"></i>
+                            </span>
+                          </a>
+                        </li>
+												<li>
+                          <a href="https://github.com/mabbason" target="_blank">
+                            <span class="team-member-icon">
+                              <i class="fab fa-github"></i>
                             </span>
                           </a>
                         </li>
                       </ul>
                     </div>
                     <div class="team-member-wrap">
-                      <img src="assets/images/team/nick.jpeg" loading="lazy" alt="">
+                      <img src="assets/images/team/miles_circle.png" loading="lazy" alt="">
                       <div class="team-member-info">
-                        <div class="team-member-name">Nicholas LiCalzi</div>
-                        <div class="team-member-location">Brooklyn, NY</div>
+                        <div class="team-member-name">Miles Abbason</div>
+                        <div class="team-member-location">Durham, NC</div>
                       </div>
                       <ul class="team-member-icons">
                         <li>
-                          <a href="mailto:nicholas.licalzi@gmail.com" target="_blank">
+                          <a href="mailto:miles.abbason@gmail.com" target="_blank">
                             <span class="team-member-icon">
                               <i class="fas fa-envelope"></i>
                             </span>
                           </a>
                         </li>
                         <li>
-                          <a href="https://nlicalzi.com" target="_blank">
+                          <a href="case-study.html" target="_blank">
                             <span class="team-member-icon">
                               <i class="fas fa-globe"></i>
                             </span>
                           </a>
                         </li>
                         <li>
-                          <a href="https://linkedin.com/in/nicholaslicalzi" target="_blank">
+                          <a href="https://www.linkedin.com/in/miles-abbason-a593b929/" target="_blank">
                             <span class="team-member-icon">
                               <i class="fab fa-linkedin"></i>
+                            </span>
+                          </a>
+                        </li>
+												<li>
+                          <a href="https://github.com/mabbason" target="_blank">
+                            <span class="team-member-icon">
+                              <i class="fab fa-github"></i>
                             </span>
                           </a>
                         </li>
                       </ul>
                     </div>
                     <div class="team-member-wrap">
-                      <img src="assets/images/team/angel.jpeg" loading="lazy" alt="">
+                      <img src="assets/images/team/kat_circle.png" loading="lazy" alt="">
                       <div class="team-member-info">
-                        <div class="team-member-name">Angel Ruiz-Bates</div>
-                        <div class="team-member-location">Tucson, AZ</div>
+                        <div class="team-member-name">Katarina Rosiak</div>
+                        <div class="team-member-location">Stockholm, Sweden</div>
                       </div>
                       <ul class="team-member-icons">
                         <li>
-                          <a href="mailto:angeljrbt@gmail.com" target="_blank">
+                          <a href="mailto:katarinarosiak@gmail.com" target="_blank">
                             <span class="team-member-icon">
                               <i class="fas fa-envelope"></i>
                             </span>
                           </a>
                         </li>
                         <li>
-                          <a href="https://angelruizbates.com/" target="_blank">
+                          <a href="https://katarinarosiak.com/" target="_blank">
                             <span class="team-member-icon">
                               <i class="fas fa-globe"></i>
                             </span>
                           </a>
                         </li>
                         <li>
-                          <a href="https://www.linkedin.com/in/angel-ruiz-bates-1b68a2142/" target="_blank">
+                          <a href="https://www.linkedin.com/in/katarzyna-katarina-rosiak-467465b7/" target="_blank">
                             <span class="team-member-icon">
                               <i class="fab fa-linkedin"></i>
+                            </span>
+                          </a>
+                        </li>
+												<li>
+                          <a href="https://github.com/katarinarosiak" target="_blank">
+                            <span class="team-member-icon">
+                              <i class="fab fa-github"></i>
                             </span>
                           </a>
                         </li>
@@ -1358,3 +656,13 @@
 </body>
 
 </html>
+
+
+<!-- 
+<br />
+<figure>
+	<img src="assets/images/case-study/api-calls.png" class="case-study-image" />
+	<figcaption>Fig. 13: Dendro's CLI commands abstract away the dozens of API calls to AWS required for setting
+		up a pipeline</figcaption>
+</figure>
+<br /> -->
