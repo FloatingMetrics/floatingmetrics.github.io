@@ -14,21 +14,21 @@ html {
   font-family: "Lexend-light";
   src: url('../fonts/Lexend/Lexend-Light.ttf');
   src: url('../fonts/Lexend/Lexend-Light.ttf') format('truetype'),
-			 url('../fonts/Lexend/Lexend-Light.ttf') format('truetype');
+       url('../fonts/Lexend/Lexend-Light.ttf') format('truetype');
 }
 
 @font-face {
   font-family: "Lexend-medium";
   src: url('../fonts/Lexend/Lexend-Medium.ttf');
   src: url('../fonts/Lexend/Lexend-Medium.ttf') format('truetype'),
-			 url('../fonts/Lexend/Lexend-Medium.ttf') format('truetype');
+       url('../fonts/Lexend/Lexend-Medium.ttf') format('truetype');
 }
 
 @font-face {
   font-family: "Lexend-bold";
   src: url('../fonts/Lexend/Lexend-Bold.ttf');
   src: url('../fonts/Lexend/Lexend-Bold.ttf') format('truetype'),
-			 url('../fonts/Lexend/Lexend-Bold.ttf') format('truetype');
+       url('../fonts/Lexend/Lexend-Bold.ttf') format('truetype');
 }
 
 body {
@@ -323,11 +323,78 @@ label {
   padding-left: 20%;
 }
 
+.case-study-image-large {
+  margin: 40px auto;
+  display: block;
+  width: 90%;
+}
+
 .case-study-image {
   margin: 40px auto;
   display: block;
   width: 70%;
 }
+
+.case-study-image-small {
+  margin: 40px auto;
+  display: block;
+  width: 50%;
+}
+
+.case-study-image-x-small {
+  margin: 40px auto;
+  display: block;
+  width: 25%;
+}
+
+.case-study-video {
+  margin: 40px auto;
+  display: block;
+  width: 70%;
+}
+
+.case-study-video-small {
+  margin: 40px auto;
+  display: block;
+  width: 50%;
+}
+
+.component{
+  font-family: Lexend-light, sans-serif;
+  width: 750px;
+  margin:0 auto;
+  padding: 3rem;
+}
+
+.component blockquote.quote {
+    position: relative; 
+    text-align: center;
+    padding: 1rem 1.2rem;
+    width: 80%;  /* create space for the quotes */
+    color: #484748;
+    margin: 1rem auto 2rem;
+}
+    
+.sidekick {
+  position: relative;
+  padding-left: 1em;
+  border-left: 0.1em solid #101E6F;
+  font-family: Lexend-light, sans-serif;
+  font-size: 1.5em;
+  line-height: 1.5em;
+  font-weight: 100;
+	font-style: italic;
+}
+.sidekick:before, .sidekick:after {
+  font-family: Lexend-light, sans-serif;
+    color: #F9C801;
+    font-size: 34px;
+}
+.sidekick:before {content: '\201e'}
+.sidekick:after {content: '\201c';}
+.sidekick cite {font-size: 70%; text-align:center; top:50%}
+.sidekick cite:before {content: ' \2015 '}
+
 
 .demo {
   width: 100%;
@@ -753,7 +820,7 @@ h3 {
   font-size: 36px;
   line-height: 1.3;
   font-weight: 700;
-	letter-spacing: 1px;
+  letter-spacing: 1px;
 }
 
 h4 {
@@ -789,7 +856,7 @@ p {
   font-family: Inter, sans-serif;
   font-size: 18px;
   line-height: 1.65;
-	letter-spacing: 0.5px;
+  letter-spacing: 0.5px;
 }
 
 li {
@@ -1173,6 +1240,9 @@ a:hover {
   bottom: -140px;
   z-index: 2;
   width: 377px;
+	border-radius: 5%;
+  -webkit-box-shadow: -1px 7px 15px -2px rgba(0,0,0,0.74); 
+  box-shadow: -1px 7px 15px -2px rgba(0,0,0,0.74);
 }
 
 .hero-image-right {
@@ -1503,7 +1573,7 @@ a:hover {
     width: 403px;
   }
   .hero-image-right {
-    width: 760px;
+    width: 960px;
   }
 }
 
