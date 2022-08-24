@@ -101,14 +101,14 @@
           <figcaption>Fig. 1: Despite developers best efforts issues still arise in production due to conditions change, difficulties of replicating production system and unreliable dependencies. </figcaption>
         </figure>
         <br />
-				<section class="component">
-					<p>
-						On Martin Fowler’s website a contributor wrote this pertinent quote:
-					</p>
-					<blockquote class="sidekick">
-						In the age of small independent services and frequent deployments, it's very difficult to test pre-production with the exact same combination of versions as they will later exist in production. <cite> martinfolwer.com</cite>
-				</blockquote>
-			 </section>
+        <section class="component">
+          <p>
+            On Martin Fowler’s website a contributor wrote this pertinent quote:
+          </p>
+          <blockquote class="sidekick">
+            In the age of small independent services and frequent deployments, it's very difficult to test pre-production with the exact same combination of versions as they will later exist in production. <cite> martinfolwer.com</cite>
+        </blockquote>
+       </section>
         <p>
           What happens when issues do arise in production? The end user's experience may be degraded or even completely broken: response times can be higher than expected, response data can be incorrect or, maybe worst of all, an API can be unavailable altogether. Rather than waiting for users to experience and surface such issues, it would be prudent to continuously test production API endpoints. This is exactly where active monitoring comes into play.
         </p>
@@ -225,10 +225,10 @@
         <br /> 
         <h3>3.3 UI/ UX Demo</h3>
         <br />
-				<div class="video-container">
-        	<iframe width="840" height="473" class="youtube-video" src="https://www.youtube.com/embed/167arvL_SbY" title="YouTube video player" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-			  </div>
-				<h3>3.4 Deployment</h3>
+        <div class="video-container">
+          <iframe width="840" height="473" class="youtube-video" src="https://www.youtube.com/embed/167arvL_SbY" title="YouTube video player" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <h3>3.4 Deployment</h3>
         <br />
         <p>
           In order to start using Seymour, an AWS account is required. Once that’s set up, the remaining steps are as follows: 
@@ -486,28 +486,28 @@
           <source src="assets/images/case-study/route-packager-01.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
-				<br />
+        <br />
         <p>
           In order to make this message distribution more targeted, we added message filtering logic to the SNS topic subscriptions for each region so that only messages intended for a given region would be added to that region’s queue for processing by its Test Runner.
         </p>
-				<br />
+        <br />
         <video width="520" height="440" class="presentation-video" autoplay loop muted>
           <source src="assets/images/case-study/route-packager-02.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
-				<br />
+        <br />
         <p>
           We still needed one last piece of functionality to make these subscription filters work: we needed to add some region metadata to the message, something we couldn’t do with EventBridge alone. 
         <br />
         <p>
           This is why we built the route packager Lambda function. In Seymour’s final architecture, each fired rule first travels to Route Packager which translates the location data from the test configuration into attributes that it adds to the message before publishing to the SNS topic.
         </p>
-				<br />
+        <br />
         <video width="520" height="440" class="presentation-video" autoplay loop muted>
           <source src="assets/images/case-study/route-packager-03.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
-				<br />
+        <br />
         <p>
           By combining Route Packager and SNS in the pre-processing phase of Seymour’s test loop,  we were able to achieve our goal of efficient distribution of tests to remote regions.
         </p>
@@ -579,68 +579,68 @@
           Seymour tests are designed to run on a set schedule but can also be triggered on demand with the ‘run now’ button. In the future, we’d like to give users the ability to trigger tests and evaluate results from a CI/CD pipeline so Seymour can be fully integrated with DevOps processes.
         </p>
 
-				<br />
+        <br />
         <!-- Section 7 -->
         <h2 class="h2">7. Presentation</h2>
         <br />
-				<iframe width="840" height="473" src="https://www.youtube.com/embed/yzey_PglYoQ" title="YouTube video player" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-				<br />
-				<br />
-				<br />
+        <iframe width="840" height="473" src="https://www.youtube.com/embed/yzey_PglYoQ" title="YouTube video player" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <br />
+        <br />
+        <br />
         <!-- Section 8 -->
         <h2 class="h2">8. References</h2>
         <br />
-				<ol>
-					<h5>Citations:</h5>
-					<li>
-						Falé F., Gebhardt S. 2017 Jan 25. SyntheticMonitoring [blog]. Martin Fowler Blog [accessed 2022 Aug 10]. <a href="https://martinfowler.com/bliki/SyntheticMonitoring.html">(https://martinfowler.com/bliki/SyntheticMonitoring.html)</a> 
-					</li>
-				<h5>Books:</h5>
-					<li>
-						Ejsmont A. 2015 Jul 3. Web Scalability for Startup Engineers 1st Edition. McGraw Hill Professional. 
-					</li>
-					<li>
-						Kleppmann M. 2017 Mar. Designing Data-Intensive Applications. O'Reilly Media, Inc.
-					</li>
-				<h5>Articles:</h5>
-					<li>
-						Carlbark J. 2018 May 07. Synthetic Monitoring: A Case Study of the Meltwater API [blog]. Under The Hood: The Official Mealtwater Engineering Blog [accessed 2022 Jul 25]. <a href="https://underthehood.meltwater.com/blog/2018/05/07/synthetic-monitoring-a-case-study-of-the-meltwater-api/">(https://underthehood.meltwater.com/blog/2018/05/07/synthetic-monitoring-a-case-study-of-the-meltwater-api/)</a>
-					</li>
-					<li>
-						Fowler M. 2018 Jan 16. IntegrationTest [blog]. Martin Fowler Blog [accessed 2022 Aug 23]. <a href="https://martinfowler.com/bliki/IntegrationTest.html">(https://martinfowler.com/bliki/IntegrationTest.html)</a>
-					</li>
-					<li>
-						Nolet T. 2019 Jul 09. How I made AWS Lambda work for my SaaS [blog]. Checkly Blog [accessed 2022 Jul 20].<a href="https://blog.checklyhq.com/how-i-made-aws-lambda-work-for-my-saas/">(https://blog.checklyhq.com/how-i-made-aws-lambda-work-for-my-saas/)</a>
-					</li>
-					<li>
-						Rago G. 2020 Jun 18. How we monitor Checkly's API and Web App (updated) [blog]. Checkly Blog [accessed 2022 Jul 20].<a href="https://blog.checklyhq.com/how-we-monitor-checkly/">(https://blog.checklyhq.com/how-we-monitor-checkly/)</a>
-					</li>
-					<h5>Tech-Talks:</h5>
-					<li>	
-						Winton J. 2019 Aug 1. Transitioning Production Tests into a Synthetic Monitoring Solution [tech-talk]. LaunchDarkly. [accessed 2022 Jul 15].<a href="https://www.youtube.com/watch?v=xEqRLYa454A&list=PLq8koenaAJWt0xHjS04HFZ1ighFDp3UVK&index=16">(https://www.youtube.com/watch?v=xEqRLYa454A&list=PLq8koenaAJWt0xHjS04HFZ1ighFDp3UVK&index=16)</a>
-					</li>
-					<h5>Documentations:</h5>
-					<li>
-						Artillery Reference Documentation. Artillery. [accessed 2022 Jun 04].<a href="https://www.artillery.io/docs/guides/overview/why-artillery">(https://www.artillery.io/docs/guides/overview/why-artillery)</a>
-					</li>
-					<li>	
-						AWS CDK 2.38.1 Reference Documentation. Amazon Web Services. [accessed 2022 Aug 15].<a href="https://docs.aws.amazon.com/cdk/api/v2/">(https://docs.aws.amazon.com/cdk/api/v2/)</a>
-					</li>
-					<li>
-						AWS SDK for JavaScript Documentation. Amazon Web Services. [accessed 2022 Aug 01].<a href="https://docs.aws.amazon.com/sdk-for-javascript/index.html">(https://docs.aws.amazon.com/sdk-for-javascript/index.html)</a>
-					</li>
-					<li>
-						Get started with synthetic monitoring. New Relic Reference Documentation. [accessed 2022 Jun 05].<a href="https://docs.newrelic.com/docs/synthetics/synthetic-monitoring/getting-started/get-started-synthetic-monitoring/">https://docs.newrelic.com/docs/synthetics/synthetic-monitoring/getting-started/get-started-synthetic-monitoring/</a>
-					</li>
-					<li>
-						Monika Reference Documentation. Monika. [accessed 2022 Jul 03].<a href="https://monika.hyperjump.tech/overview">(https://monika.hyperjump.tech/overview)</a>
-					</li>
-					<h5>Miscellaneous Resources:</h5>
-					<li>
-						CDK Patterns. [accessed 2022 Aug 02].<a href="https://cdkpatterns.com/patterns/">(https://cdkpatterns.com/patterns/)</a>
-					</li>
-			</ol>
-			<br />
+        <ol>
+          <h5>Citations:</h5>
+          <li>
+            Falé F., Gebhardt S. 2017 Jan 25. SyntheticMonitoring [blog]. Martin Fowler Blog [accessed 2022 Aug 10]. <a href="https://martinfowler.com/bliki/SyntheticMonitoring.html">(https://martinfowler.com/bliki/SyntheticMonitoring.html)</a> 
+          </li>
+        <h5>Books:</h5>
+          <li>
+            Ejsmont A. 2015 Jul 3. Web Scalability for Startup Engineers 1st Edition. McGraw Hill Professional. 
+          </li>
+          <li>
+            Kleppmann M. 2017 Mar. Designing Data-Intensive Applications. O'Reilly Media, Inc.
+          </li>
+        <h5>Articles:</h5>
+          <li>
+            Carlbark J. 2018 May 07. Synthetic Monitoring: A Case Study of the Meltwater API [blog]. Under The Hood: The Official Mealtwater Engineering Blog [accessed 2022 Jul 25]. <a href="https://underthehood.meltwater.com/blog/2018/05/07/synthetic-monitoring-a-case-study-of-the-meltwater-api/">(https://underthehood.meltwater.com/blog/2018/05/07/synthetic-monitoring-a-case-study-of-the-meltwater-api/)</a>
+          </li>
+          <li>
+            Fowler M. 2018 Jan 16. IntegrationTest [blog]. Martin Fowler Blog [accessed 2022 Aug 23]. <a href="https://martinfowler.com/bliki/IntegrationTest.html">(https://martinfowler.com/bliki/IntegrationTest.html)</a>
+          </li>
+          <li>
+            Nolet T. 2019 Jul 09. How I made AWS Lambda work for my SaaS [blog]. Checkly Blog [accessed 2022 Jul 20].<a href="https://blog.checklyhq.com/how-i-made-aws-lambda-work-for-my-saas/">(https://blog.checklyhq.com/how-i-made-aws-lambda-work-for-my-saas/)</a>
+          </li>
+          <li>
+            Rago G. 2020 Jun 18. How we monitor Checkly's API and Web App (updated) [blog]. Checkly Blog [accessed 2022 Jul 20].<a href="https://blog.checklyhq.com/how-we-monitor-checkly/">(https://blog.checklyhq.com/how-we-monitor-checkly/)</a>
+          </li>
+          <h5>Tech-Talks:</h5>
+          <li>	
+            Winton J. 2019 Aug 1. Transitioning Production Tests into a Synthetic Monitoring Solution [tech-talk]. LaunchDarkly. [accessed 2022 Jul 15].<a href="https://www.youtube.com/watch?v=xEqRLYa454A&list=PLq8koenaAJWt0xHjS04HFZ1ighFDp3UVK&index=16">(https://www.youtube.com/watch?v=xEqRLYa454A&list=PLq8koenaAJWt0xHjS04HFZ1ighFDp3UVK&index=16)</a>
+          </li>
+          <h5>Documentations:</h5>
+          <li>
+            Artillery Reference Documentation. Artillery. [accessed 2022 Jun 04].<a href="https://www.artillery.io/docs/guides/overview/why-artillery">(https://www.artillery.io/docs/guides/overview/why-artillery)</a>
+          </li>
+          <li>	
+            AWS CDK 2.38.1 Reference Documentation. Amazon Web Services. [accessed 2022 Aug 15].<a href="https://docs.aws.amazon.com/cdk/api/v2/">(https://docs.aws.amazon.com/cdk/api/v2/)</a>
+          </li>
+          <li>
+            AWS SDK for JavaScript Documentation. Amazon Web Services. [accessed 2022 Aug 01].<a href="https://docs.aws.amazon.com/sdk-for-javascript/index.html">(https://docs.aws.amazon.com/sdk-for-javascript/index.html)</a>
+          </li>
+          <li>
+            Get started with synthetic monitoring. New Relic Reference Documentation. [accessed 2022 Jun 05].<a href="https://docs.newrelic.com/docs/synthetics/synthetic-monitoring/getting-started/get-started-synthetic-monitoring/">https://docs.newrelic.com/docs/synthetics/synthetic-monitoring/getting-started/get-started-synthetic-monitoring/</a>
+          </li>
+          <li>
+            Monika Reference Documentation. Monika. [accessed 2022 Jul 03].<a href="https://monika.hyperjump.tech/overview">(https://monika.hyperjump.tech/overview)</a>
+          </li>
+          <h5>Miscellaneous Resources:</h5>
+          <li>
+            CDK Patterns. [accessed 2022 Aug 02].<a href="https://cdkpatterns.com/patterns/">(https://cdkpatterns.com/patterns/)</a>
+          </li>
+      </ol>
+      <br />
         <!-- Section 9 -->
         <h2>9. Team</h2>
         <br>
