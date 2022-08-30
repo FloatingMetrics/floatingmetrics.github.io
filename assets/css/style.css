@@ -396,11 +396,11 @@ label {
 }
 
 .sidekick:before {
-  content: '\201e'
+  content: '\201c';
 }
 
 .sidekick:after {
-  content: '\201c';
+  content: '\201e';
 }
 
 .sidekick cite {
