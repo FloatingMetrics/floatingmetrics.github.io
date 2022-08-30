@@ -39,6 +39,9 @@
             <a href="case-study.html" class="link-block w-inline-block">
               <div>Case Study</div>
             </a>
+            <a href="presentation.html" class="link-block w-inline-block">
+              <div>Presentation</div>
+            </a>
             <a href="team.html" class="link-block w-inline-block">
               <div>The Team</div>
             </a>
@@ -106,17 +109,17 @@
             On Martin Fowler’s website a contributor wrote this pertinent quote:
           </p>
           <blockquote class="sidekick">
-            In the age of small independent services and frequent deployments, it's very difficult to test pre-production with the exact same combination of versions as they will later exist in production. <cite> martinfolwer.com</cite>
+            In the age of small independent services and frequent deployments, it's very difficult to test pre-production with the exact same combination of versions as they will later exist in production. <sup> [1]</sup>
         </blockquote>
        </section>
         <p>
-          What happens when issues do arise in production? The end user's experience may be degraded or even completely broken: response times can be higher than expected, response data can be incorrect or, maybe worst of all, an API can be unavailable altogether. Rather than waiting for users to experience and surface such issues, it would be prudent to continuously test production API endpoints. This is exactly where active monitoring comes into play.
+          What happens when issues do arise in production? The end user's experience may be degraded or even completely broken: response times can be higher than expected, response data can be incorrect or, maybe worst of all, an API can be completely unavailable. Rather than waiting for users to experience and surface such issues, it would be prudent to continuously test production API endpoints. This is exactly where active monitoring comes into play.
         </p>
         <br />
         <!-- Section 2 -->
         <h2 class="h2">2. Active Monitoring</h2>
         <br />
-        <h3>2.1 What is Active Monitoring</h3>
+        <h3>2.1. What is Active Monitoring</h3>
         <br />
         <p>
           Active monitoring, also known as synthetic monitoring, is a technique that runs automated tests against a live production system on a regular basis in order to detect failing business requirements.   </p>
@@ -153,7 +156,7 @@
         </p>
         <br />
 
-        <h3>2.2 Why is active monitoring important?</h3>
+        <h3>2.2. Why is active monitoring important?</h3>
         <br />
         <p>
           Things are bound to go wrong in a software production environment. Even with a well-maintained test environment, errors can still slip through the cracks and make their way into production. Rather than view this as a bad thing, engineering teams can see it as an opportunity to use active monitoring to identify problems in production before users do.
@@ -184,7 +187,7 @@
         <!-- Section 3 -->
         <h2 class="h2">3. Solutions</h2>
         <br />
-        <h3>3.1 Existing Solutions</h3>
+        <h3>3.1. Existing Solutions</h3>
         <br />
         <p>
           There are quite a few active monitoring solutions. Some prominent SaaS vendors that offer this service are New Relic and Datadog, as well as smaller-scale companies like Uptrends, Checkly, and Runscope. There are also a handful of open-source solutions, such as Monika and Artillery (more commonly known for load testing). Besides using a SaaS or open-source active monitoring product, some teams may decide on a DIY approach and build their own in-house solution. Let’s weigh the pros and cons of each of these options by considering their various capabilities and feature sets.
@@ -194,21 +197,26 @@
           <img src="assets/images/case-study/comparison-table-no-seymour.png" class="case-study-image" />
           <figcaption>Fig. 5: Comparing existing solutions on active monitoring space.</figcaption>
         </figure>
+        <br />
+        <h4>3.1.1. Software as a Service (SaaS)</h4>
         <br /> 
         <p>
-          In general, SaaS active monitoring products offer geographic distribution of request locations. These solutions are managed, meaning there’s very little setup required from the customer to configure their first test. Most of the interactions with these SaaS products, including New Relic and Checkly, are through a UI, which makes setting up new tests easy for all users, including non-engineers. SaaS solutions typically offer a wide variety of features, including native alerting over a variety of channels, teardown scripts, and integration into CI/CD pipelines. All of this functionality, some of which might not be needed for a given use case, does come at a direct financial cost: SaaS solutions are the most expensive option. Another drawback of a managed solution is the lack of data ownership. This might be a deal breaker for some organizations, such as financial institutions,  who don’t want their test data residing on a third-party provider’s infrastructure.
+          In general, SaaS active monitoring products offer geographic distribution of request locations. These solutions are managed, meaning there’s minimal setup required from the customer to configure their first test. Most of the interactions with these SaaS products, including New Relic and Checkly, are through a UI, which makes setting up new tests easy for all users, including non-engineers. SaaS solutions typically offer a wide variety of features, including native alerting over a variety of channels, teardown scripts, and integration into CI/CD pipelines. All of this functionality, some of which might not be needed for a given use case, does come at a direct financial cost: SaaS solutions are the most expensive option. Another drawback of a managed solution is the lack of data ownership. This might be a deal breaker for some organizations, such as financial institutions,  who don’t want their test data residing on a third-party provider’s infrastructure.
         </p>
         <br />
+        <h4>3.1.2. Open-source</h4>
         <br />
         <p>
           On the other hand, open-source solutions allow users to maintain complete control over their data and are usually free. However, they don’t typically offer geographic distribution of tests, at least in their free tiers. Additionally, these solutions require hosting and are more laborious to set up and use as compared to SaaS solutions. Both Monika and Artillery, for instance, are set up via a multi-step process, and tests are configured via YAML. There is no UI.
         </p>
         <br />
+        <h4>3.1.3. DIY</h4>
+        <br />
         <p>
           Finally, we have in-house solutions. These could entail either building a system from the ground up or wrapping an existing open-source solution like Monika. A major appeal of this approach is that it can be customized to fit users’ specific needs, which can of course include maintaining complete control over their data. Drawbacks of this approach include the need to deploy and maintain the finished application as well as the amount of time and effort required to develop such a solution, diverting engineering resources that could be otherwise spent on more mission-critical tasks.
         </p>
         <br />
-        <h3>3.2 Introducing Seymour</h3>
+        <h3>3.2. Introducing Seymour</h3>
         <br />
         <p>
           Having surveyed available active monitoring solutions, what we found missing was an open-source, self-hosted, easy-to-configure monitoring solution that can run tests from globally distributed locations. 
@@ -223,12 +231,12 @@
           <figcaption>Fig. 6: Comparing Seymour to exisiting solutions.</figcaption>
         </figure>
         <br /> 
-        <h3>3.3 UI/ UX Demo</h3>
+        <h3>3.3. UI/ UX Demo</h3>
         <br />
         <div class="video-container">
           <iframe width="840" height="473" class="youtube-video" src="https://www.youtube.com/embed/167arvL_SbY" title="YouTube video player" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
-        <h3>3.4 Deployment</h3>
+        <h3>3.4. Deployment</h3>
         <br />
         <p>
           In order to start using Seymour, an AWS account is required. Once that’s set up, the remaining steps are as follows: 
@@ -284,7 +292,18 @@
         </figure>
         <br /> 
         <p>
-          Each test begins as a JSON configuration file sent from the UI when a user first schedules a test. The backend app stores the test configuration in the database, assigns it an ID, and then passes it to EventBridge, a serverless event bus often used in AWS-based event-driven architectures. We are using EventBridge as our Scheduler service, where each test is stored in our Scheduler as an EventBridge "Rule": a scheduled action that fires at a fixed, recurring interval. The test configuration is saved to the rule as a payload that will be sent to its target every time it fires. Once a test has been scheduled, the backend app isn’t actually needed for the remainder of the test lifecycle.  </p>
+          The first part of the test loop is test configuration, where a user can define a test and Seymour saves the test for execution. Test configuration begins with the user creating and saving a new test in the Seymour UI. In the UI, the user can:
+        </p>
+        <ol>
+          <li>Define the API endpoint</li>
+          <li>Add assertions for the test</li>
+          <li>Select the geographic origination points</li>
+          <li>Select the time interval for test execution</li>
+          <li>Define alert destination settings</li>
+        </ol>
+        <p>
+          When the test is saved, it is sent from the UI to the backend app as a JSON test configuration. The backend app stores the test configuration in the database, assigns it an ID, and then passes it to EventBridge, a serverless event bus often used in AWS-based event-driven architectures. We are using EventBridge as our Scheduler service in order to run each test at the interval configured by the user. Each test is stored in our Scheduler as an EventBridge "Rule": a scheduled action that fires an event message at a fixed, recurring interval. The test configuration is saved to the rule as a payload of an event message that will be sent to the rule’s target every time it fires. Once a test has been scheduled, the backend app isn’t actually needed for the remainder of the test lifecycle.
+        </p>
         <br />
         <figure>
           <video width="100%" autoplay loop muted class="case-study-video">
@@ -297,11 +316,11 @@
         <h3>4.3. Pre-processing</h3>
         <br />
         <p>
-          Our test configuration continues through the loop by entering the Pre-Processing phase, where each scheduled test run is launched. The target destination for each rule is the Lambda function named “Route Packager”. Lambda is an AWS serverless compute service that lets you run code without having to provision or manage servers.
+          The next phase we will look at in the test loop is pre-processing. During this phase, a rule triggers each test run that is routed to the correct geographic region. As previously mentioned, a rule in our Scheduler fires an event message with the test configuration as its payload. The target destination for each rule is the Lambda function named “Route Packager”. Lambda is an AWS serverless compute service that lets you run code without having to provision or manage servers.
         </p>
         <br />
         <p>
-          Route Packager's purpose is to read the location data from the JSON test configuration payload and prep it for routing to the correct regions. It then publishes a message with the test to a topic in SNS, Amazon's Simple Notification Service. A queue in each region is subscribed to the topic and will only accept messages if they are intended for that region.
+          Route Packager's purpose is to send a message with the test configuration to SNS, Amazon's Simple Notification Service, that is only sent to the regions for which a test is configured to originate from. Route Packager reads the location data from the JSON test configuration payload and writes a region attribute for each location to the message. . It then sends the message, with the test configuration as its payload, to a topic in SNS. A queue in each region is subscribed to the topic and will only accept messages if they are intended for that region. Each queue does this with a subscription filter that discards all messages unless a message has a region attribute that matches the region of the queue.
         </p>
         <br />
         <figure>
@@ -315,7 +334,10 @@
         <h3>4.4. Test execution</h3>
         <br />
         <p>
-          Up to this point, all the infrastructure we have looked at has been within the home region. This, the Test Execution phase, is a look at what is going on in each remote region. As mentioned previously, there is a queue that first receives the message from the home region. The message is pulled from the queue by a “Test Runner” Lambda function. Now, the JSON test configuration is at the point where it’s actually used to make the HTTP request. Test Runner makes a request to the API endpoint indicated by the test configuration and then compares the response to the assertions. If any of the assertions fail, then the whole test is marked as failed. Test Runner then sends this result back to a queue in the Home Region. 
+          Up to this point, all the infrastructure we have looked at has been within the home region. The next phase, the Test Execution phase, can occur in one or more of the remote regions or the home region. The purpose here is to make the HTTP request to the endpoint, compare the response with the assertions, and send the results back to the home region.
+        </p>
+        <p>
+          As mentioned previously, there is a queue that first receives the message containing the test configuration from the home region SNS. The message is pulled from the queue by a “Test Runner” Lambda function. Test Runner makes a request to the API endpoint indicated by the test configuration and then compares the response to the assertions. If any of the assertions fail, then the whole test is marked as failed. Test Runner then sends this result back to a queue in the Home Region. 
         </p>
         <br />
         <figure>
@@ -329,7 +351,13 @@
         <h3>4.5. Post-processing</h3>
         <br />
         <p>
-          Back in the home region, another Lambda function, “Result Handler”, pulls results from the queue that Test Runner wrote to. Result Handler first examines the results for whether the test passed or failed. Regardless of whether the test passed or not, Result Handler writes the results to the database. If it finds that the test failed, it immediately invokes another Lambda, which handles alerting. The alerting Lambda accepts a failed test result and queries the database for the relevant alerting data before sending an alert message to each configured destination.
+          Back in the home region, each test enters the final phase, post-processing, where the results are saved to the database, and alerts are triggered for failed tests. The test results are received from Test Runner in a queue. A Lambda function, “Result Handler”, pulls from the queue and processes the test results. Result Handler first examines the results for whether the test passed or failed. Regardless of whether the test passed or not, Result Handler writes the results to the database. If it finds that the test failed, it immediately invokes another Lambda, “Test Alerts”, which handles alerting. 
+        </p>
+        <p>
+          Test Alerts accepts a failed test result and queries the database for the relevant alerting data. This data consists of the types of alert channels selected by the user, which currently includes e-mail, Slack, and Discord. For each configured alert channel the query also returns a “destination” which is an email address or a webhook URL for Slack and Discord.
+        </p>
+        <p>
+          When the database query is complete, the Result Handler sends the test results to each alert channel.
         </p>
         <br />
         <figure>
@@ -356,7 +384,7 @@
           While planning Seymour’s architecture, we quickly faced a critical decision: should we wrap an open-source project or should we build something from the bottom-up? After considering several options, we took a closer look at Monika.
         </p>
         <br />
-        <h4>Monika’s capabilities and limitations</h4>
+        <h4>5.1.1. Monika’s capabilities and limitations</h4>
         <p>
           Monika is an active monitoring tool designed to send out user-defined HTTP requests on a schedule and assess the responses. Out of the box, Monika can run complex API tests on scheduled intervals, handle alerting through integrations with popular platforms, and allow users to maintain ownership of their data. 
         </p>
@@ -378,7 +406,7 @@
           <figcaption>Fig. 14: Monika provides test monitoring, native alerting and ensures data ownership but it lacks global test distribution and easy to use UI.</figcaption>
         </figure>
         <br />
-        <h4>Challenges of wrapping Monika</h4>
+        <h4>5.1.2. Challenges of wrapping Monika</h4>
         <br />
         <p>
           We considered wrapping and extending Monika to achieve our requirements, as it offered some of the core functionality we wanted to implement. However, Monika requires a constantly running process, and we realized we would need to deploy the app to dedicated virtual machines in each of the 22 AWS regions we planned to support in order to give our users the option to generate multi-region tests. This approach presented a number of thorny questions:
@@ -399,7 +427,7 @@
           <figcaption>Fig. 15: Incorporating Monika into Seymour would potentially save engineering time but it would force to bend architecture to fit Monica.</figcaption>
         </figure>
         <br />
-        <h4>Build</h4>
+        <h4>5.1.3. Build</h4>
         <p>
           As shown in the overview of Seymour’s architecture, we ended up utilizing Lambda functions to achieve our requirement of multi-region testing. Instead of deploying an entire virtual machine running Monika to remote regions, Seymour simply deploys Test Runner, a Lambda function, coupled with a queue. Although we had to write more custom code, we found this setup to be superior in the following ways:
         </p>
@@ -457,7 +485,7 @@
         </p>
         <br />
         <p>
-          One option we looked at was directly invoking remote region test runner Lambdas from the scheduler rules. While EventBridge is technically capable of doing this, it has a five-target limit for any given rule. Because we wanted to support 22 targets, one for each region, we quickly discarded this approach.  
+          One option we looked at was directly invoking remote region test runner Lambdas from the scheduler rules. While EventBridge is technically capable of doing this, it has a five-target limit for any given rule. Because we wanted to support 22 targets, one for each region, we quickly discarded this approach.
         </p>
         <br />
         <figure>
@@ -466,7 +494,7 @@
         </figure>
         <br />
         <p>
-          We also tried using EventBridge’s “event bus” functionality, which is essentially another interface for communicating events in AWS, to connect home and remote regions. But we found that this approach complicated passing test configuration JSON data to Test Runner, so we abandoned it. 
+          We also tried using EventBridge’s “event bus” functionality, which is essentially another interface for communicating events in AWS, to connect home and remote regions. But we found that this approach prevented us from sending the test configuration JSON data to Test Runner, so we abandoned it.
         </p>
         <br />
         <figure>
@@ -479,22 +507,26 @@
         </p>
         <br />
         <p>
-          While this setup worked, it wasn’t efficient: for every rule that fired, a corresponding message would be delivered to every test runner Lambda. This was not ideal because every message would invoke all test-runner Lambdas, causing each one to spin up and execute some code to check if it was an intended target, resulting in wasted compute time.
-        </p>
+          While this setup worked, it wasn’t efficient: for every rule that fired, a corresponding message would be delivered to every test runner Lambda. This was not ideal because every message would invoke all test runner Lambdas, causing each one to spin up and execute some code to check if it was an intended target, resulting in wasted compute time.
+         </p>
         <br />
-        <video width="520" height="440" class="presentation-video" autoplay loop muted>
-          <source src="assets/images/case-study/route-packager-01.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
+        <figure>
+          <video width="520" height="440" class="presentation-video" autoplay loop muted>
+            <source src="assets/images/case-study/route-packager-01.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </figure>
         <br />
         <p>
           In order to make this message distribution more targeted, we added message filtering logic to the SNS topic subscriptions for each region so that only messages intended for a given region would be added to that region’s queue for processing by its Test Runner.
         </p>
         <br />
-        <video width="520" height="440" class="presentation-video" autoplay loop muted>
-          <source src="assets/images/case-study/route-packager-02.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
+        <figure>
+          <video width="520" height="440" class="presentation-video" autoplay loop muted>
+            <source src="assets/images/case-study/route-packager-02.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </figure>
         <br />
         <p>
           We still needed one last piece of functionality to make these subscription filters work: we needed to add some region metadata to the message, something we couldn’t do with EventBridge alone. 
@@ -521,6 +553,7 @@
         <p>
           There are three pillars in Seymour’s overall approach to system resiliency:
         </p>
+        <br />
         <h5>Serverless Test Loop</h5>
         <p>
           First, we reached for AWS’s serverless offerings, including Lambda functions, throughout the test loop. As discussed in the wrap vs. build section, using serverless AWS resources allows Seymour to shift a good portion of operational responsibility and infrastructure management to AWS. 
@@ -539,7 +572,7 @@
         <h3>5.4. CDK: cross-region automated deployment</h3>
         <br />
         <p>
-          One of the foremost challenges we faced in building Seymour was automating the deployment of its AWS resources across multiple regions. Because ease-of-deployment was one of our main goals for the project, we wanted to limit the amount of infrastructure configuration required of the user.
+          One of the foremost challenges we faced in building Seymour was automating the deployment of its AWS resources across multiple regions. Because ease of deployment was one of our main goals for the project, we wanted to limit the amount of infrastructure configuration required of the user.
         </p>
         <br />
         <p>
@@ -547,10 +580,10 @@
         </p>
         <br />
         <p>
-          One way of implementing a multi-region deployment is using a CDK pipeline. However, we continued to look for a different approach because using the pipeline would add several more pieces of complexity for the eventual user just to get Seymour deployed on their own account. However, technically this would work and it remained a fallback option for us.</p>
+          One way of implementing a multi-region deployment is using a CDK pipeline. However, we continued to look for a different approach because using the pipeline would add several more steps for the eventual user just to get Seymour deployed on their own account. The user would need to fork the Seymour repositories and provide those repo URLs to the CDK. Then in AWS Secret Manager, manually create a secret labeled ‘github-token’ and add a GitHub Personal Access Token. We continued to look for an alternative that would require fewer setup steps for the user.
         <br />
         <p>
-          Ultimately we were able to avoid having to use the CDK pipeline by using a different AWS tool, the SDK. While the CDK is specifically designed for setting up, modifying, or tearing down resources, the SDK allowed us to implement cross-region communication at runtime. The test runner Lambda function uses the SDK to connect to the Home Region. This kept the deployment process lean and the complexity to a minimum for the installing user.
+          Ultimately we were able to avoid having to use the CDK pipeline by introducing an additional  AWS tool, the SDK. While the CDK is a framework used specifically to set up, modify, and tear down AWS resources, the SDK simplifies the use of AWS services by providing a set of JavaScript libraries that can be used directly in an application’s code. Instead of enabling cross-region communication with the use of the CDK pipeline during deployment, we implemented a few functions with the SDK in Test Runner’s code, which allows it to connect to the Home Region at runtime. This kept the deployment process lean and the complexity to a minimum for the installing user.
         </p>
         <br />
         <figure>
@@ -578,13 +611,6 @@
         <p>	
           Seymour tests are designed to run on a set schedule but can also be triggered on demand with the ‘run now’ button. In the future, we’d like to give users the ability to trigger tests and evaluate results from a CI/CD pipeline so Seymour can be fully integrated with DevOps processes.
         </p>
-
-        <br />
-        <!-- Section 7 -->
-        <h2 class="h2">7. Presentation</h2>
-        <br />
-        <iframe width="840" height="473" src="https://www.youtube.com/embed/yzey_PglYoQ" title="YouTube video player" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        <br />
         <br />
         <br />
         <!-- Section 8 -->
@@ -607,37 +633,37 @@
             Carlbark J. 2018 May 07. Synthetic Monitoring: A Case Study of the Meltwater API [blog]. Under The Hood: The Official Mealtwater Engineering Blog [accessed 2022 Jul 25]. <a href="https://underthehood.meltwater.com/blog/2018/05/07/synthetic-monitoring-a-case-study-of-the-meltwater-api/">(https://underthehood.meltwater.com/blog/2018/05/07/synthetic-monitoring-a-case-study-of-the-meltwater-api/)</a>
           </li>
           <li>
-            Fowler M. 2018 Jan 16. IntegrationTest [blog]. Martin Fowler Blog [accessed 2022 Aug 23]. <a href="https://martinfowler.com/bliki/IntegrationTest.html">(https://martinfowler.com/bliki/IntegrationTest.html)</a>
+            Fowler M. 2018 Jan 16. IntegrationTest [blog]. Martin Fowler Blog [accessed 2022 Aug 23]. <a href="https://martinfowler.com/bliki/IntegrationTest.html"> (https://martinfowler.com/bliki/IntegrationTest.html)</a>
           </li>
           <li>
-            Nolet T. 2019 Jul 09. How I made AWS Lambda work for my SaaS [blog]. Checkly Blog [accessed 2022 Jul 20].<a href="https://blog.checklyhq.com/how-i-made-aws-lambda-work-for-my-saas/">(https://blog.checklyhq.com/how-i-made-aws-lambda-work-for-my-saas/)</a>
+            Nolet T. 2019 Jul 09. How I made AWS Lambda work for my SaaS [blog]. Checkly Blog [accessed 2022 Jul 20].<a href="https://blog.checklyhq.com/how-i-made-aws-lambda-work-for-my-saas/"> (https://blog.checklyhq.com/how-i-made-aws-lambda-work-for-my-saas/)</a>
           </li>
           <li>
-            Rago G. 2020 Jun 18. How we monitor Checkly's API and Web App (updated) [blog]. Checkly Blog [accessed 2022 Jul 20].<a href="https://blog.checklyhq.com/how-we-monitor-checkly/">(https://blog.checklyhq.com/how-we-monitor-checkly/)</a>
+            Rago G. 2020 Jun 18. How we monitor Checkly's API and Web App (updated) [blog]. Checkly Blog [accessed 2022 Jul 20].<a href="https://blog.checklyhq.com/how-we-monitor-checkly/"> (https://blog.checklyhq.com/how-we-monitor-checkly/)</a>
           </li>
           <h5>Tech-Talks:</h5>
           <li>	
-            Winton J. 2019 Aug 1. Transitioning Production Tests into a Synthetic Monitoring Solution [tech-talk]. LaunchDarkly. [accessed 2022 Jul 15].<a href="https://www.youtube.com/watch?v=xEqRLYa454A&list=PLq8koenaAJWt0xHjS04HFZ1ighFDp3UVK&index=16">(https://www.youtube.com/watch?v=xEqRLYa454A&list=PLq8koenaAJWt0xHjS04HFZ1ighFDp3UVK&index=16)</a>
+            Winton J. 2019 Aug 1. Transitioning Production Tests into a Synthetic Monitoring Solution [tech-talk]. LaunchDarkly. [accessed 2022 Jul 15].<a href="https://www.youtube.com/watch?v=xEqRLYa454A&list=PLq8koenaAJWt0xHjS04HFZ1ighFDp3UVK&index=16"> (https://www.youtube.com/watch?v=xEqRLYa454A&list=PLq8koenaAJWt0xHjS04HFZ1ighFDp3UVK&index=16)</a>
           </li>
-          <h5>Documentations:</h5>
+          <h5>Documentation:</h5>
           <li>
-            Artillery Reference Documentation. Artillery. [accessed 2022 Jun 04].<a href="https://www.artillery.io/docs/guides/overview/why-artillery">(https://www.artillery.io/docs/guides/overview/why-artillery)</a>
+            Artillery Reference Documentation. Artillery. [accessed 2022 Jun 04].<a href="https://www.artillery.io/docs/guides/overview/why-artillery"> (https://www.artillery.io/docs/guides/overview/why-artillery)</a>
           </li>
           <li>	
-            AWS CDK 2.38.1 Reference Documentation. Amazon Web Services. [accessed 2022 Aug 15].<a href="https://docs.aws.amazon.com/cdk/api/v2/">(https://docs.aws.amazon.com/cdk/api/v2/)</a>
+            AWS CDK 2.38.1 Reference Documentation. Amazon Web Services. [accessed 2022 Aug 15].<a href="https://docs.aws.amazon.com/cdk/api/v2/"> (https://docs.aws.amazon.com/cdk/api/v2/)</a>
           </li>
           <li>
-            AWS SDK for JavaScript Documentation. Amazon Web Services. [accessed 2022 Aug 01].<a href="https://docs.aws.amazon.com/sdk-for-javascript/index.html">(https://docs.aws.amazon.com/sdk-for-javascript/index.html)</a>
+            AWS SDK for JavaScript Documentation. Amazon Web Services. [accessed 2022 Aug 01].<a href="https://docs.aws.amazon.com/sdk-for-javascript/index.html"> (https://docs.aws.amazon.com/sdk-for-javascript/index.html)</a>
           </li>
           <li>
-            Get started with synthetic monitoring. New Relic Reference Documentation. [accessed 2022 Jun 05].<a href="https://docs.newrelic.com/docs/synthetics/synthetic-monitoring/getting-started/get-started-synthetic-monitoring/">https://docs.newrelic.com/docs/synthetics/synthetic-monitoring/getting-started/get-started-synthetic-monitoring/</a>
+            Get started with synthetic monitoring. New Relic Reference Documentation. [accessed 2022 Jun 05].<a href="https://docs.newrelic.com/docs/synthetics/synthetic-monitoring/getting-started/get-started-synthetic-monitoring/"> (https://docs.newrelic.com/docs/synthetics/synthetic-monitoring/getting-started/get-started-synthetic-monitoring)</a>
           </li>
           <li>
-            Monika Reference Documentation. Monika. [accessed 2022 Jul 03].<a href="https://monika.hyperjump.tech/overview">(https://monika.hyperjump.tech/overview)</a>
+            Monika Reference Documentation. Monika. [accessed 2022 Jul 03].<a href="https://monika.hyperjump.tech/overview"> (https://monika.hyperjump.tech/overview)</a>
           </li>
           <h5>Miscellaneous Resources:</h5>
           <li>
-            CDK Patterns. [accessed 2022 Aug 02].<a href="https://cdkpatterns.com/patterns/">(https://cdkpatterns.com/patterns/)</a>
+            CDK Patterns. [accessed 2022 Aug 02].<a href="https://cdkpatterns.com/patterns/"> (https://cdkpatterns.com/patterns/)</a>
           </li>
       </ol>
       <br />
