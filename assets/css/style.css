@@ -580,19 +580,12 @@ label {
   color: #fff;
 }
 
-/*.w-nav[data-collapse=all] .w-nav-menu {
-  display: none
-}*/
-
 .w-nav[data-collapse="all"] .w-nav-button {
   display: block;
 }
 
 @media screen and (max-width: 991px) {
 
-  /*  .w-nav[data-collapse=medium] .w-nav-menu {
-    display: none
-  }*/
   .w-nav[data-collapse="medium"] .w-nav-button {
     display: block;
   }
@@ -685,37 +678,12 @@ label {
   }
 }
 
-/*@keyframes spin {
-  0% {
-    transform: rotate(0)
-  }
-  100% {
-    transform: rotate(360deg)
-  }
-}*/
 
 #spin {
   background-image: linear-gradient(111deg, #011e67, #c4ddff);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
-
-/*#spin:after {
-  content: "‏‏‎‏‏‎ ‎centralizing";
-  animation: spin 3s linear infinite
-}
-*/
-/*@keyframes spin {
-  25% {
-    content: "‏‏‎ ‎encrypting‎‎‎‎‏‏‎"
-  }
-  50% {
-    content: "‏‏‎ ‎managing‏‏‎"
-  }
-  75% {
-    content: "‏‏‎ ‎securing‏‏‎"
-  }
-}*/
 
 .spin {
   align-self: flex-start;
@@ -1594,6 +1562,26 @@ a:hover {
   position: relative;
 }
 
+.video-responsive{
+  overflow:hidden;
+  padding-bottom:56.25%;
+  position:relative;
+  height:0;
+}
+
+.video-responsive iframe{
+  left:0;
+  top:0;
+  height:100%;
+  width:100%;
+  position:absolute;
+}
+
+.video-container {
+  padding-left: 26%;
+  padding-right: 26%;
+}
+
 @media screen and (min-width: 1280px) {
   .hero-image-left {
     width: 403px;
@@ -1602,6 +1590,8 @@ a:hover {
   .hero-image-right {
     width: 960px;
   }
+
+
 }
 
 @media screen and (min-width: 1440px) {
@@ -1770,21 +1760,6 @@ a:hover {
     display: -ms-flexbox;
     display: flex;
   }
-
-  /*  .navigation-wrap {
-    padding-right: 30px;
-    padding-left: 30px
-  }
-  .image-container {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-    -ms-flex-align: center;
-    align-items: center
-  }*/
 }
 
 @media screen and (max-width: 767px) {
@@ -1923,10 +1898,6 @@ a:hover {
     font-size: 36px;
   }
 
-  /*  .navigation-wrap {
-    padding-right: 25px;
-    padding-left: 25px
-  }*/
   .text {
     font-size: 16px;
   }
@@ -1943,7 +1914,6 @@ a:hover {
   #sidebar {
     visibility: hidden;
     opacity: 0;
-    /* transition: visibility 0s, opacity 0.5s linear; */
   }
 
   #case-study {
@@ -2127,11 +2097,6 @@ a:hover {
     font-size: 32px;
   }
 
-  /*  .navigation-wrap {
-    padding-right: 20px;
-    padding-left: 20px
-  }*/
-
   .hero-image-left {
     width: 154px;
   }
@@ -2145,8 +2110,3 @@ a:hover {
     padding-bottom: 0px;
   }
 }
-
-/* DENDRO ADDITIONS
-.bold {
-  font-weight: bold;
-} */
