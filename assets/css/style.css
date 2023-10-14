@@ -1027,7 +1027,7 @@ a:hover {
 
 #team-paragraph {
   max-width: 565px;
-  display: none;
+  /* display: none; */
 }
 
 .white-paragraph.bottom-margin {
@@ -1517,7 +1517,7 @@ a:hover {
   display: flex;
   width: 92%;
   max-width: 1140px;
-  padding-top: 20px;
+  padding-top: 40px;
   padding-bottom: 20px;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
@@ -2109,4 +2109,10 @@ a:hover {
   #team-header {
     padding-bottom: 0px;
   }
+}
+
+figcaption {
+  color: #b5bbbf;
+  font-style: italic;
+  text-align: left;
 }

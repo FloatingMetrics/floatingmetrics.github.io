@@ -1,4 +1,4 @@
-const words = ["performance", "response time", "correctness of data"];
+const words = ["collection", "processing", "visualisation"];
 let i = 0;
 
 const _changeText = () => {
