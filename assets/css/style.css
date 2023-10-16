@@ -2,6 +2,11 @@ html {
   font-family: sans-serif;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
+  --primary-dark: #102E44;
+  --accent-light: #9ee2e1;
+  --accent-medium: #13a09b;
+  --accent-dark: #0a5654;
+  --light-gray: #a0a7ac;
 }
 
 @font-face {
@@ -35,7 +40,7 @@ body {
   margin: 0;
   background-color: #fff;
   font-family: Inter, sans-serif;
-  color: #c4ddff;
+  color: var(--accent-light);
   font-size: 14px;
   line-height: 20px;
   margin: 0;
@@ -146,12 +151,12 @@ figcaption {
 }
 */
 #sidebar ul a {
-  color: #011e6f;
+  color: var(--primary-dark);
   text-decoration: none;
 }
 
 #sidebar ul a:hover {
-  color: #c4ddff;
+  color: var(--accent-medium);
 }
 
 #sidebar ul ul {
@@ -172,7 +177,6 @@ figcaption {
 [class*=" w-icon-"],
 [class^="w-icon-"] {
   font-family: webflow-icons !important;
-  speak: none;
   font-style: normal;
   font-weight: 400;
   font-variant: normal;
@@ -281,6 +285,12 @@ p {
   margin-top: 0;
   margin-bottom: 10px;
   text-align: justify;
+}
+
+figcaption {
+  color: var(--light-gray);
+  font-style: italic;
+  text-align: left;
 }
 
 button {
@@ -680,7 +690,7 @@ label {
 
 
 #spin {
-  background-image: linear-gradient(111deg, #011e67, #c4ddff);
+  background-image: linear-gradient(111deg, var(--primary-dark), var(--accent-light));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -690,7 +700,7 @@ label {
 }
 
 .fa-github:hover {
-  color: #c4ddff;
+  color: var(--accent-medium);
 }
 
 .diagram {
@@ -754,7 +764,7 @@ label {
 
 .team-member-name {
   margin-bottom: 10px;
-  color: #011e6f;
+  color: var(--primary-dark);
   font-size: 18px;
   font-weight: 500;
   text-align: center;
@@ -763,7 +773,7 @@ label {
 .team-member-location {
   font-size: 16px;
   text-align: center;
-  color: #b5bbbf;
+  color: var(--light-gray);
 }
 
 .team-member-icons {
@@ -777,16 +787,16 @@ ul.team-member-icons li {
 
 .team-member-icon {
   margin: 0px 5px;
-  color: #011e6f;
+  color: var(--primary-dark);
 }
 
 .team-member-icon:hover {
-  color: #c4ddff;
+  color: var(--accent-medium);
 }
 
 h1 {
   font-family: Lexend-Bold, sans-serif;
-  color: #011e6f;
+  color: var(--primary-dark);
   font-size: 64px;
   font-weight: 700;
   letter-spacing: -0.04em;
@@ -796,7 +806,7 @@ h2 {
   margin-top: 20px;
   margin-bottom: 10px;
   font-family: Lexend-Bold, sans-serif;
-  color: #011e6f;
+  color: var(--primary-dark);
   font-size: 48px;
   line-height: 1.2;
   font-weight: 700;
@@ -806,7 +816,7 @@ h2 {
 h3 {
   margin-top: 20px;
   margin-bottom: 10px;
-  color: #011e6f;
+  color: var(--primary-dark);
   font-size: 36px;
   line-height: 1.3;
   font-weight: 700;
@@ -816,7 +826,7 @@ h3 {
 h4 {
   margin-top: 10px;
   margin-bottom: 10px;
-  color: #011e6f;
+  color: var(--primary-dark);
   font-size: 30px;
   line-height: 1.4;
   font-weight: 700;
@@ -825,7 +835,7 @@ h4 {
 h5 {
   margin-top: 10px;
   margin-bottom: 10px;
-  color: #011e6f;
+  color: var(--primary-dark);
   font-size: 24px;
   line-height: 1.4;
   font-weight: 700;
@@ -834,7 +844,7 @@ h5 {
 h6 {
   margin-top: 10px;
   margin-bottom: 10px;
-  color: #011e6f;
+  color: var(--primary-dark);
   font-size: 15px;
   line-height: 1;
   font-weight: 700;
@@ -865,7 +875,7 @@ blockquote {
 
 a {
   font-family: Lexend-medium, sans-serif;
-  color: #011e6f;
+  color: var(--primary-dark);
   /*  font-size: 20px;*/
   line-height: 1.3;
   /*  font-weight: 500;*/
@@ -873,7 +883,7 @@ a {
 }
 
 a:hover {
-  color: #c4ddff;
+  color: var(--accent-medium);
 }
 
 .section {
@@ -967,7 +977,7 @@ a:hover {
   -ms-flex-align: center;
   align-items: center;
   border-radius: 25px;
-  background-image: linear-gradient(111deg, #011e6f, #c4ddff);
+  background-image: linear-gradient(111deg, var(--primary-dark), var(--accent-light));
 }
 
 .black-h2 {
@@ -1007,7 +1017,7 @@ a:hover {
 }
 
 .white-paragraph {
-  color: #b5bbbf;
+  color: var(--light-gray);
   font-weight: 400;
   text-align: justify;
 }
@@ -1159,13 +1169,13 @@ a:hover {
   align-items: center;
   border-style: solid;
   border-width: 2px;
-  border-color: #b5bbbf;
+  border-color: var(--light-gray);
   border-radius: 100%;
   background-color: transparent;
 }
 
 .tab-link.w--current {
-  border-color: #c4ddff;
+  border-color: var(--accent-light);
   background-color: transparent;
 }
 
@@ -1205,7 +1215,7 @@ a:hover {
 .tab-link-text {
   position: absolute;
   bottom: -40px;
-  color: #b5bbbf;
+  color: var(--light-gray);
   text-align: center;
   white-space: nowrap;
 }
@@ -1262,7 +1272,7 @@ a:hover {
   -ms-flex-align: center;
   align-items: center;
   border-radius: 100px;
-  background-color: #011e6f;
+  background-color: var(--primary-dark);
   color: #fff;
   font-size: 16px;
   text-decoration: none;
@@ -1281,7 +1291,8 @@ a:hover {
 }
 
 .primary-button:hover {
-  background-image: linear-gradient(111deg, #011e6f, #c4ddff);
+  background-color: var(--accent-medium);
+  background-image: linear-gradient(111deg, var(--primary-dark), var(--accent-medium));
 }
 
 .button-container {
@@ -1326,7 +1337,7 @@ a:hover {
 .tertiary-button-text {
   position: relative;
   z-index: 1;
-  color: #c4ddff !important;
+  color: var(--accent-light) !important;
 }
 
 .tertiary-button:hover {
@@ -1388,7 +1399,7 @@ a:hover {
 ._404-text {
   max-width: 675px;
   margin-bottom: 40px;
-  color: #b5bbbf;
+  color: var(--light-gray);
   font-size: 20px;
   line-height: 1.65;
   text-align: center;
@@ -1427,7 +1438,7 @@ a:hover {
 }
 
 .link-block:hover {
-  color: #c4ddff;
+  color: var(--accent-medium);
 }
 
 .navigation-container {
@@ -1553,7 +1564,7 @@ a:hover {
 }
 
 .text {
-  color: #b5bbbf;
+  color: var(--light-gray);
   font-size: 18px;
   line-height: 1.8;
 }
@@ -1775,7 +1786,7 @@ a:hover {
     grid-template-rows: auto auto;
   }
 
-  .template-logo {
+  template-logo {
     max-width: 50px;
   }
 
@@ -2112,7 +2123,7 @@ a:hover {
 }
 
 figcaption {
-  color: #b5bbbf;
+  color: var(--light-gray);
   font-style: italic;
   text-align: left;
 }
